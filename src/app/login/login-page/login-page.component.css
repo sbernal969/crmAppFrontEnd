@@ -1,0 +1,22 @@
+#bgColorNav {
+    background-color: #53A2DA;
+    background-image: linear-gradient(315deg, #86BC25 0%, #53A2DA 74%);
+}
+
+#colorBody {
+    background-color: #0059a3;
+    
+    
+    
+    background-image: linear-gradient(315deg, #0059a3 0%, #5b65b8 74%);
+}
+
+#bgColor {
+    background-color: #53A2DA;
+    background-image: linear-gradient(315deg, #86BC25 0%, #53A2DA 74%);
+}
+
+#bgColorFooter {
+    background-color: #53A2DA;
+    background-image: linear-gradient(315deg, #86BC25 0%, #53A2DA 74%);
+}
