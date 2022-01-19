@@ -1,0 +1,13 @@
+{
+  "codigo": 201,
+  "mensaje": "OK",
+  "data": {
+  "access": false,
+  "typeRol": 1,
+  "name": "Scarleth",
+  "lastname": "Bernal",
+  "status": true,
+  "username": "sbernal",
+  "message": "Credenciales correctas"
+  }
+  }
