@@ -1,4 +1,4 @@
-import { LoginResponse } from './../interface/login.interface';
+import { LoginResponse } from '../models/interface/login.interface';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';

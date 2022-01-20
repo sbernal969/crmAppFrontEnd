@@ -1,5 +1,5 @@
-import { Data, LoginResponse } from './../interface/login.interface';
-import { LoginService } from './../services/login.service';
+import { LoginResponse } from '../../../models/interface/login.interface';
+import { LoginService } from '../../../services/login.service';
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginPageComponent {
   public loginResponse: LoginResponse = <LoginResponse>{};
-  public listarTablaUsuario: Data = <Data>{};
   dataSubscription: Subscription = new Subscription();
 
   dataArreglo: any;
