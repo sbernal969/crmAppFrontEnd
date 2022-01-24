@@ -12,13 +12,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { Routing } from './app.routing';
+import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HeaderComponent, FooterComponent, HomepageComponent
+    HeaderComponent, FooterComponent, HomepageComponent, ListCustomerComponent
   ],
   imports: [
     FormsModule,
@@ -26,7 +30,11 @@ import { Routing } from './app.routing';
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    Routing],
+    Routing,
+    MatSliderModule,
+    MatTableModule,
+    MatPaginatorModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
