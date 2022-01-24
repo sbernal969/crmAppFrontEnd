@@ -7,22 +7,14 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-  @Input() valor: string = '';
-  nombre: any = 'Prueba nav';
+  nombre: any = '';
+  currentUser: any = "";
 
-  constructor(private route: ActivatedRoute) {}
-
-  /*   params = new URLSearchParams(location.search);
-  contract = this.params.get('id'); */
+  constructor(private route: ActivatedRoute) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  }
 
   ngOnInit(): void {
-
-    // this.nombre = this.params.get('id')
-
-    /*
-   this.route.queryParamMap.subscribe(
-      (params: Params) => console.log(params['id'])
-    ); */
-    this.nombre = this.route.snapshot.paramMap.get('id');
+    this.nombre = this.currentUser.name + ' ' + this.currentUser.lastname;
   }
 }
