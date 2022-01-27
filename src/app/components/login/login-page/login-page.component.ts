@@ -38,6 +38,7 @@ export class LoginPageComponent {
     public dialog: MatDialog
 
   ) {
+    this.loginService.logOut();
     this.loginForm = {
       user: {
         val: '',
@@ -105,15 +106,14 @@ export class LoginPageComponent {
       this.loginForm.user.val = '';
       this.loginForm.password.val = '';
     } else {
-      localStorage.setItem('currentUser', JSON.stringify(this.loginResponse.data));
+      this.loginService.login(JSON.stringify(this.loginResponse.data));
       this.navegarAFormulario();
-      this.toastr.success(this.loginResponse.data.message);
     }
   }
 
   navegarAFormulario() {
   this.router.navigate(
-    ['/homepage/',{id: this.loginResponse.data.name +" "+  this.loginResponse.data.lastname}]
+    ['/homepage/']
   );
   }
 
