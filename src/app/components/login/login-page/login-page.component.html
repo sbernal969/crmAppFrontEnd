@@ -23,9 +23,7 @@
                   *ngIf="!loginForm.user.isValid() && user.touched"
                   >{{ loginForm.user.error }}</small
                 >
-                <p >
-
-                </p>
+                <p></p>
                 <label class="form-label" for="typePasswordX">Password</label>
                 <input
                   class="form-control form-control-lg"
@@ -40,15 +38,17 @@
                   *ngIf="!loginForm.password.isValid() && password.touched"
                   >{{ loginForm.password.error }}</small
                 >
+
                 <p class="small mb-5 pb-lg-2">
-                  <a class="text-black-50" href="#!"></a>
+                  <a mat-list-item routerLink="/forgot-password">
+                    <span class="label">Forgot password</span>
+                  </a>
                 </p>
                 <button
                   type="button"
                   class="btn btn-outline-light btn-lg px-5"
                   [disabled]="!isValidForm"
                   (click)="btnLogin()"
-
                 >
                   Login
                 </button>
