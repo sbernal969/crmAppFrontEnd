@@ -15,6 +15,7 @@ import { ListCustomerComponent } from "./components/customers/list-customer/list
 import { MatSliderModule } from "@angular/material/slider";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     HomepageComponent,
     CreateCustomerComponent,
     ListCustomerComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     FormsModule,
