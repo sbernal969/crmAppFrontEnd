@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,13 +14,15 @@ import { ListCustomerComponent } from './components/customers/list-customer/list
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoginHelpComponent } from './components/login/login-help/login-help.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HeaderComponent, FooterComponent, HomepageComponent, ListCustomerComponent
+    HeaderComponent, FooterComponent, HomepageComponent, ListCustomerComponent, LoginHelpComponent
   ],
   imports: [
     FormsModule,
@@ -34,6 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
