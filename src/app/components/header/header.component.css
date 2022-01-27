@@ -17,3 +17,8 @@
     background-color: #53A2DA;
     background-image: linear-gradient(315deg, #86BC25 0%, #53A2DA 74%);
 }
+
+.style-logout {
+    margin-left: auto;
+    float: right;
+}

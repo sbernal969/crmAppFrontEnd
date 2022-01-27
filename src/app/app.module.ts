@@ -16,6 +16,7 @@ import { MatSliderModule } from "@angular/material/slider";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
+import { PreventLoggedInAccess } from './components/login/prevent-logged-in-access';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,9 @@ import { ForgotPasswordComponent } from './components/login/forgot-password/forg
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
+    
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [PreventLoggedInAccess],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
