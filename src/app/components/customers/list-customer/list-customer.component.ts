@@ -8,47 +8,24 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./list-customer.component.css']
 })
 export class ListCustomerComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'firstName', 'familyName', 'dateOfBirth', 'countryOfBirth', 'nationality', 'gender', 'emailAddress', 'mobileNumber', 'fixTelephoneNumber', 'postalAddress', 'monthlyIncome', 'isCustomer'];
+  displayedColumns: string[] = ['id', 'firstName', 'familyName', 'dateOfBirth', 'countryOfBirth', 'nationality', 'gender', 'emailAddress', 'mobileNumber', 'fixTelephoneNumber', 'postalAddress', 'monthlyIncome', 'isCustomer', 'acciones'];
   datos = [
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'},
-    {id: '123', firstName: 'dsfsdf', familyName: 'sdfdsf', dateOfBirth: 'sfddsfs', countryOfBirth: 'dsfdsfdsf', nationality: 'gfhfghd', gender: 'dfsdgdfgs', emailAddress: 'gfhdfs', mobileNumber: 'dgesfsdf', fixTelephoneNumber: 'sdgfhgsdfs', postalAddress: 'gfhdsfsf', monthlyIncome: 'gfhgdfsd', isCustomer: 'gfhbsdfs'}
+    {id: '5683523', firstName: 'Cliente', familyName: 'Nuevo', dateOfBirth: '01/01/1980', countryOfBirth: 'Chile', nationality: 'Chileno', gender: 'Masculino', emailAddress: 'correo@gmail.com', mobileNumber: '5691234567', fixTelephoneNumber: '5629876543', postalAddress: '8092378', monthlyIncome: '$1.000.000', isCustomer: 'Customer'}
   ]
   dataSource = new MatTableDataSource<any>(this.datos);
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  superUser: number = 1;
+  rolUser: number = 1;
   currentUser: any = "";
 
   constructor() { }
 
   ngOnInit(): void {
-    if(this.superUser == 1){
-      this.displayedColumns = ['id', 'firstName', 'familyName', 'dateOfBirth', 'gender', 'emailAddress', 'mobileNumber', 'fixTelephoneNumber', 'postalAddress', 'isCustomer'];
+    if(this.rolUser == 1){
+      this.displayedColumns = ['id', 'firstName', 'familyName', 'dateOfBirth', 'gender', 'emailAddress', 'mobileNumber', 'fixTelephoneNumber', 'postalAddress', 'isCustomer', 'acciones'];
     }
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    this.superUser = this.currentUser.typeRol;
+    this.rolUser = this.currentUser.typeRol;
     //console.log(this.currentUser);
   }
 

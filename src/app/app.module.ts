@@ -16,6 +16,7 @@ import { ListCustomerComponent } from './components/customers/list-customer/list
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { PreventLoggedInAccess } from './components/login/prevent-logged-in-access';
 
 
 @NgModule({
@@ -34,8 +35,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
+    
   ],
-  providers: [],
+  providers: [PreventLoggedInAccess],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

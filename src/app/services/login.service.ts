@@ -1,15 +1,19 @@
 import { LoginResponse } from '../models/interface/login.interface';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Routing } from '../app.routing';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   private jsonURL = 'https://crmsiigroup.herokuapp.com/v1/login/user';
+  private isAuth = new BehaviorSubject<boolean>(true);
+  isAuth$ = this.isAuth.asObservable();
 
-  constructor(private http: HttpClient, ) {}
+  constructor(private http: HttpClient, private route: Router) {}
 
   public getJSON(user: any, password: any): Observable<any> {
     const httpOptions = {
@@ -43,6 +47,29 @@ export class LoginService {
   }
 
   isAuthenticated(): boolean {
-    return true;
+    if(localStorage.getItem('currentUser')){
+    this.isAuth.next(true);
+      return true;
+    }
+    else{
+      this.route.navigateByUrl('/login');
+      this.isAuth.next(false);
+      return false;
+    }
+  }
+
+  login(data: any){
+    this.isAuth.next(true);
+    localStorage.setItem('currentUser', data);
+  }
+
+  logOut(){
+    this.isAuth.next(false);
+    localStorage.removeItem('currentUser');
+    this.route.navigateByUrl('/login');
+  }
+
+  getUser(){
+    return localStorage.getItem('currentUser');
   }
 }
