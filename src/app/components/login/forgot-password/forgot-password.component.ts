@@ -1,7 +1,10 @@
+import { Data } from "./../../../models/interface/data.interface";
+import { ForgotResponse } from "./../../../models/interface/forgot.interface";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
+import { LoginService } from "src/app/services/login.service";
 
 @Component({
   selector: "app-forgot-password",
@@ -9,9 +12,12 @@ import { Subscription } from "rxjs";
   styleUrls: ["./forgot-password.component.css"],
 })
 export class ForgotPasswordComponent implements OnInit {
-  //public loginResponse: LoginResponse = <LoginResponse>{};
+  //Declaracion de variables
+  public forgotResponse: ForgotResponse = <ForgotResponse>{};
   dataSubscription: Subscription = new Subscription();
+
   ngOnInit(): void {}
+
   public loginForm: {
     user: {
       val: string;
@@ -21,7 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
   };
 
   constructor(
-    //private loginService: LoginService,
+    private loginService: LoginService,
     private router: Router,
     private toastr: ToastrService
   ) {
@@ -51,13 +57,39 @@ export class ForgotPasswordComponent implements OnInit {
     if (this.loginForm.user.val == "") {
       this.toastr.success("User required");
     }
+    this.getForgot();
   }
 
   btnBackLogin() {
     this.router.navigate(["/login/"]);
   }
-
+  //
   get isValidForm() {
     return this.loginForm.user.isValid();
+  }
+  //Metodo que llama al servicio
+  getForgot() {
+    console.log(this.loginForm.user.val);
+    this.dataSubscription = this.loginService
+      .getForgot(this.loginForm.user.val)
+      .subscribe((res) => {
+        if (this.forgotResponse == undefined) {
+          console.log("Objeto Vacio");
+        } else {
+          this.forgotResponse = res;
+          this.validar();
+        }
+      });
+  }
+
+  
+  validar() {    
+    if (this.forgotResponse.data.email == null) {
+      this.toastr.error(this.forgotResponse.data.message);
+      this.loginForm.user.val = "";
+    } else {
+      this.toastr.success(this.forgotResponse.data.message);
+      this.loginService.login(JSON.stringify(this.forgotResponse.data));
+    }
   }
 }
