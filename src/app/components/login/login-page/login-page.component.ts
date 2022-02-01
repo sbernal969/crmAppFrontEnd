@@ -30,6 +30,7 @@ export class LoginPageComponent {
       isValid: () => boolean;
     };
   };
+  dialogRef: any;
 
   constructor(
     private loginService: LoginService,
@@ -124,7 +125,8 @@ export class LoginPageComponent {
   loginHelp(){
     const dialog = this.dialog.open(LoginHelpComponent,
     {
-      width: '800px',
+      width: '450px',
+      panelClass: 'custom-dialog-container',
     });
   }
 
