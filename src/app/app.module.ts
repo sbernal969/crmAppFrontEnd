@@ -17,16 +17,15 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { PreventLoggedInAccess } from './components/login/prevent-logged-in-access';
+import { LoginHelpComponent } from './components/login/login-help/login-help.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomepageComponent,
+    HeaderComponent, FooterComponent, HomepageComponent, ListCustomerComponent, LoginHelpComponent,
     CreateCustomerComponent,
-    ListCustomerComponent,
     ForgotPasswordComponent,
   ],
   imports: [
@@ -39,7 +38,7 @@ import { PreventLoggedInAccess } from './components/login/prevent-logged-in-acce
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
-    
+    MatDialogModule
   ],
   providers: [PreventLoggedInAccess],
   bootstrap: [AppComponent]
