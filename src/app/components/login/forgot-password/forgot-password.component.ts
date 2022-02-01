@@ -31,6 +31,10 @@ export class ForgotPasswordComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
+    if(this.loginService.getUser()){
+      this.loginService.logOut();
+    }
+      
     this.loginForm = {
       user: {
         val: "",

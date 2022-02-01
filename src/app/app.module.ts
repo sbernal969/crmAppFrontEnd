@@ -14,9 +14,11 @@ import { CreateCustomerComponent } from "./components/customers/create-customer/
 import { ListCustomerComponent } from "./components/customers/list-customer/list-customer.component";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatTableModule } from "@angular/material/table";
+import { MatCardModule } from '@angular/material/card'
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { PreventLoggedInAccess } from './components/login/prevent-logged-in-access';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { LoginHelpComponent } from './components/login/login-help/login-help.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
@@ -38,6 +40,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
+    MatCardModule,
+    FlexLayoutModule,    
     MatDialogModule
   ],
   providers: [PreventLoggedInAccess],

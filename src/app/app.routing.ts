@@ -15,8 +15,7 @@ const appRoutes: Routes = [
   },
   {
     path: "forgot-password",
-    component: ForgotPasswordComponent,
-   
+    component: ForgotPasswordComponent
   },
   {
     path: "homepage",
