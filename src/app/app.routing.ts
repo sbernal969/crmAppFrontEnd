@@ -8,8 +8,15 @@ import { PreventLoggedInAccess } from "./components/login/prevent-logged-in-acce
 const appRoutes: Routes = [
   { path: "login", component: LoginPageComponent },
 
-  { path: "create-customer", component: CreateCustomerComponent },
-  { path: "forgot-password", component: ForgotPasswordComponent },
+  {
+    path: "create-customer",
+    component: CreateCustomerComponent,
+    canActivate: [PreventLoggedInAccess],
+  },
+  {
+    path: "forgot-password",
+    component: ForgotPasswordComponent
+  },
   {
     path: "homepage",
     component: HomepageComponent,

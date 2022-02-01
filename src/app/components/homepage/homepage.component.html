@@ -1,11 +1,25 @@
-<div class="container py-5 h-100">
-    <h2 class="fw-bold mb-2 text-uppercase">Bienvenido</h2>
-    <label class="form-label">{{nombre}}</label>
+<div class="card-container">
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+        <mat-card class="mat-card-customer mat-elevation-z4">
+            <mat-card-title class="mat-card-title">Create</mat-card-title>
+            <img mat-card-image src="./../assets/img/agreement.jpg">
+            <mat-card-subtitle class="mat-card-subtitle">Create customer</mat-card-subtitle>
+            <mat-card-actions class="btn btn-primary mat-card-button">Create</mat-card-actions>
+        </mat-card>
+        <mat-card class="mat-card-customer mat-elevation-z4">
+            <mat-card-title class="mat-card-title">View</mat-card-title>
+            <img mat-card-image src="./../assets/img/view.jpg">
+            <mat-card-subtitle class="mat-card-subtitle">View customer's information</mat-card-subtitle>
+            <mat-card-actions class="btn btn-primary mat-card-button">View</mat-card-actions>
+        </mat-card>
+        <mat-card class="mat-card-customer mat-elevation-z4" *ngIf="this.rol == 2">
+            <mat-card-title class="mat-card-title">Update</mat-card-title>
+            <img mat-card-image src="./../assets/img/modify.jpg">
+            <mat-card-subtitle class="mat-card-subtitle">Update customer's information</mat-card-subtitle>
+            <mat-card-actions class="btn btn-primary mat-card-button">Update</mat-card-actions>
+        </mat-card>
+    </div>
 </div>
-<!-- <div class="container">
-    <button class="btn btn-primary">
-            Crear
-    </button>
-</div> -->
+
 
 <!-- <app-list-customer></app-list-customer> -->
