@@ -15,8 +15,7 @@ const appRoutes: Routes = [
   },
   {
     path: "forgot-password",
-    component: ForgotPasswordComponent,
-    canActivate: [PreventLoggedInAccess]   
+    component: ForgotPasswordComponent
   },
   {
     path: "homepage",

@@ -1,0 +1,19 @@
+button {
+    background-color: rgb(137, 175, 245);
+    color: white;
+    border-radius: 0.5rem;
+    border-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover {
+    background-color: white;
+    color: rgb(74, 131, 238);
+}
+
+h2 {
+    color: rgb(74, 131, 238);
+    text-align: center;
+}

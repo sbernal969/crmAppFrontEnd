@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog} from '@angular/material/dialog';
+import { LoginHelpComponent } from '../login-help/login-help.component';
 
 @Component({
   selector: 'app-login-page',
@@ -28,11 +30,14 @@ export class LoginPageComponent {
       isValid: () => boolean;
     };
   };
+  dialogRef: any;
 
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
+
   ) {
     this.loginService.logOut();
     this.loginForm = {
@@ -116,4 +121,15 @@ export class LoginPageComponent {
   get isValidForm() {
     return this.loginForm.user.isValid() && this.loginForm.password.isValid();
   }
+
+  loginHelp(){
+    const dialog = this.dialog.open(LoginHelpComponent,
+    {
+      width: '450px',
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
 }
+
+
