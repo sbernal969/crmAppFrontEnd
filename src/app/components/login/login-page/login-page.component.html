@@ -11,13 +11,13 @@
                             </p>
                             <form method="post" class="form-outline form-white mb-4">
                                 <label class="form-label" for="typeEmailX">User</label>
-                                <input class="form-control form-control-lg" type="text" name="userName" [(ngModel)]="loginForm.user.val" #user="ngModel" />
+                                <input class="form-control form-control-sm" type="text" name="userName" [(ngModel)]="loginForm.user.val" #user="ngModel" />
                                 <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.user.isValid() && user.touched">{{ loginForm.user.error }}</small
                 >
                 <p></p>
                 <label class="form-label" for="typePasswordX">Password</label>
                 <input
-                  class="form-control form-control-lg"
+                  class="form-control form-control-sm"
                   type="password"
                   name="password"
                   [(ngModel)]="loginForm.password.val"
@@ -29,6 +29,7 @@
                   *ngIf="!loginForm.password.isValid() && password.touched"
                   >{{ loginForm.password.error }}</small
                 >
+                <br>
 
                 <p class="small mb-5 pb-lg-2">
                   <!-- <a mat-list-item routerLink="/forgot-password">
@@ -37,17 +38,25 @@
                 </p>
                 <button
                   type="button"
-                  class="btn btn-outline-light btn-lg px-5"
+                  class="btn btn-outline-light btn-sm px-5"
                   [disabled]="!isValidForm"
                   (click)="btnLogin()"
                 >
                   Login
                 </button>
-              </form>
+              
+                <!-- link Login Help -->
+                <div>
+                  <br>
+                  <a mat-list-item routerLink="" (click)="loginHelp()" >
+                    <span class="label"><small>Login Help</small></span>
+                                </a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
   </div>
 </section>
