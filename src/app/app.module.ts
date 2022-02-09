@@ -17,6 +17,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { PreventLoggedInAccess } from './components/login/prevent-logged-in-access';
+import { VisualizationComponent } from './app/visualization/visualization.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PreventLoggedInAccess } from './components/login/prevent-logged-in-acce
     CreateCustomerComponent,
     ListCustomerComponent,
     ForgotPasswordComponent,
+    VisualizationComponent,
   ],
   imports: [
     FormsModule,
