@@ -2,8 +2,8 @@
     "name": "citi-personal-crm",
     "version": "0.0.0",
     "engines": {
-        "node": "16.13.1",
-        "npm": "8.3.0"
+        "node": "12.11.1",
+        "npm": "6.11.3"
     },
     "scripts": {
         "heroku-postbuild": "ng build --prod",
