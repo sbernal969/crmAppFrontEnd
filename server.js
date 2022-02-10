@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 app.use(express.static(__dirname + '/dist/citi-personal-crm'));
-app.get('/*', function(req, res) {
+app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname +
         '/dist/citi-personal-crm/index.html'));
 });
