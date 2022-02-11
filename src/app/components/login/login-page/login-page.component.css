@@ -17,3 +17,15 @@
     background-color: #53A2DA;
     background-image: linear-gradient(315deg, #86BC25 0%, #53A2DA 74%);
 }
+
+.btn-login-help {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #0d6efd;
+    text-decoration: underline;
+    cursor: pointer;
+}
