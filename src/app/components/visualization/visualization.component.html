@@ -1,0 +1,58 @@
+<div class="container-md-px4 contenedor">
+    <div class="titulo">
+        <h4><b>Visualization of Customer or Prospect</b></h4>
+    </div>
+
+    <table class="table" class="full-width" cellspacing="0">
+        <tr>
+            <th scope="row"></th>
+            <td class="td">ID Number: {{customer.id}}</td>
+            <td class="td">Full Name: {{customer.fullName}}</td>
+            <td class="td">Date of Birth: {{customer.dateBirth}}</td>
+            <td class="td">Nacionality: {{customer.nacionality}}</td>
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td class="td">Gender: {{customer.gender}}</td>
+            <td class="td">Email: {{customer.mail}}</td>
+            <td class="td">Mobile Number: {{customer.mobile}}</td>
+            <td class="td">Fix Telephone Number: {{customer.fixMobile}}</td>
+        </tr>
+    </table>
+
+    <table class="table" class="full-width" cellspacing="0">
+        <tr>
+            <th scope="row"></th>
+            <td class="td">City:{{customer.city}}</td>
+            <td class="td">Street Name:{{customer.street}}</td>
+            <td class="td">Number: {{customer.number}} </td>
+
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td class="td">Commune:{{customer.commune}} </td>
+            <td class="td">Postal Code: {{customer.postalCode}} </td>
+        </tr>
+    </table>
+    <table class="table" class="full-width" cellspacing="0">
+        <tr>
+            <th scope="row"></th>
+            <td class="td">Additional Information: {{customer.info}}</td>
+        </tr>
+    </table>
+    <table class="table" class="full-width" cellspacing="0">
+        <tr>
+            <th scope="row"></th>
+            <td class="td">Monthly Income:{{customer.monthly}}</td>
+        </tr>
+    </table>
+
+
+    <div class="botones">
+        <button class="btnV" mat-raised-button color="primary">Home</button>
+        <button class="btnV" mat-raised-button color="primary">Create</button>
+    </div>
+
+
+
+</div>

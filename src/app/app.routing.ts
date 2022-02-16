@@ -4,6 +4,7 @@ import { LoginPageComponent } from "./components/login/login-page/login-page.com
 import { RouterModule, Routes } from "@angular/router";
 import { HomepageComponent } from "./components/homepage/homepage.component";
 import { PreventLoggedInAccess } from "./components/login/prevent-logged-in-access";
+import { VisualizationComponent } from "./components/visualization/visualization.component";
 
 const appRoutes: Routes = [
   { path: "login", component: LoginPageComponent },
@@ -21,6 +22,10 @@ const appRoutes: Routes = [
     path: "homepage",
     component: HomepageComponent,
     canActivate: [PreventLoggedInAccess],
+  },
+  {
+    path: "visualization",
+    component: VisualizationComponent,
   },
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", redirectTo: "/login" },

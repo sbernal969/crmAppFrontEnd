@@ -23,6 +23,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VisualizationComponent } from './components/visualization/visualization.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent, FooterComponent, HomepageComponent, ListCustomerComponent, LoginHelpComponent,
     CreateCustomerComponent,
     ForgotPasswordComponent,
+    VisualizationComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatPaginatorModule,
     MatCardModule,
     FlexLayoutModule,    
-    MatDialogModule, NgbModule
+    MatDialogModule, NgbModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [PreventLoggedInAccess],
   bootstrap: [AppComponent]
