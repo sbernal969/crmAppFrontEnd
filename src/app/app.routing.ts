@@ -4,6 +4,7 @@ import { LoginPageComponent } from "./components/login/login-page/login-page.com
 import { RouterModule, Routes } from "@angular/router";
 import { HomepageComponent } from "./components/homepage/homepage.component";
 import { PreventLoggedInAccess } from "./components/login/prevent-logged-in-access";
+import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
 
 const appRoutes: Routes = [
   { path: "login", component: LoginPageComponent },
@@ -16,6 +17,10 @@ const appRoutes: Routes = [
   {
     path: "forgot-password",
     component: ForgotPasswordComponent
+  },
+  {
+    path: "list-customer",
+    component: ListCustomerComponent
   },
   {
     path: "homepage",
