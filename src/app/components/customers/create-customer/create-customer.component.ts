@@ -225,6 +225,8 @@ export class CreateCustomerComponent {
       { type: "required", message: "Required" },
       { type: "pattern", message: "Invalid email" },
     ],
+    commune: new FormControl("", [Validators.required]),
+  postalcode: new FormControl("", [Validators.required]),
   };
 
 
@@ -287,7 +289,8 @@ export class CreateCustomerComponent {
       Validators.minLength(4),
       Validators.pattern("^[0-9]*$"),
     ]),
-    
+    commune: new FormControl("", [Validators.required]),
+    postalcode: new FormControl("", [Validators.required]),
   });
 
   getErrorMessage() {
