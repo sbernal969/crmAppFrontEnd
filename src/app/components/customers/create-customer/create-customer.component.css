@@ -1,0 +1,138 @@
+.contenedor .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.contenedor {
+  margin: 1rem auto;
+  padding: 4rem;
+  background-color: white;
+  width: 60%;
+  border-radius: 8px;
+  opacity: 90%;
+}
+
+.conterTable {
+  width: 100%;
+  margin-top: 20px;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.mat-form-field {
+  width: 500 !important;
+}
+
+.email {
+  width: 38% !important;
+}
+.code {
+  width: 90px !important;
+}
+
+.date {
+  width: 200px !important;
+}
+
+::ng-deep .mat-form-field {
+  font-size: 14px;
+}
+
+.btnPrincipal {
+  font-size: 14px;
+  background-color: #53a2da;
+  color: white;
+  border-radius: 0.5rem;
+  border-color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 3px;
+  width: 100px;
+  margin: 10px;
+  height: 40px;
+}
+
+.btnPrincipal:hover {
+  background-color: white;
+  color: rgb(74, 131, 238);
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.sectionBtn {
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.check {
+  margin: 0 10px;
+}
+::ng-deep .mat-checkbox-frame {
+  border-color: rgb(74, 131, 238);
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #86bc25;
+}
+
+::ng-deep.buttons-class {
+  height: 60px !important;
+  width: 210px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip-list {
+  width: 41%;
+}
+
+.gender {
+  width: 15%;
+}
+.apellidos {
+  width: 23%;
+}
+
+.adicional {
+  width: 41%;
+}
+
+.lineaTable {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.mat-standard-chip {
+  min-height: 21px !important;
+}
+
+.titulo {
+  padding: 1rem;
+  width: auto;
+  margin: 16px;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  color: #53a2da;
+  margin-top: 0px;
+}
+
+
+.subTitulo { 
+  justify-content: center;
+  text-align: left;
+  font-size: 14px;
+  color: #53a2da;
+
+}

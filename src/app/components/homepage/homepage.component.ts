@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +11,7 @@ export class HomepageComponent implements OnInit {
   currentUser: any = "";
   rol?: number;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,  private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     console.log(this.currentUser);
     
@@ -21,4 +21,8 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.nombre = this.currentUser.name + ' ' + this.currentUser.lastname;
   }
+
+  btnCreate(){this.router.navigate(["/create-customer/"]);}
 }
+
+
