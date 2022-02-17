@@ -23,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopupConfirmacionComponent } from './components/utils/popup-confirmacion/popup-confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent, FooterComponent, HomepageComponent, ListCustomerComponent, LoginHelpComponent,
     CreateCustomerComponent,
     ForgotPasswordComponent,
+    PopupConfirmacionComponent,
   ],
   imports: [
     BrowserModule,

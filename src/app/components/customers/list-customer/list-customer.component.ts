@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
+import { PopupConfirmacionComponent } from '../../utils/popup-confirmacion/popup-confirmacion.component';
 
 @Component({
   selector: "app-list-customer",
@@ -46,7 +48,7 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
   rolUser: number = 1;
   currentUser: any = "";
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     if (this.rolUser == 1) {
@@ -72,5 +74,25 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
+      width: '250px',
+      data: {
+        title: 'Titulo nuevo', 
+        message: '¿Quieres crear el customer?',
+        msgBtnNo: 'No',
+        msgBtnYes: 'Yes',
+        option: 0
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(
+      result => {
+        console.log('The dialog was closed');
+        console.log(result);
+        
+    });
   }
 }
