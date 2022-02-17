@@ -14,24 +14,20 @@ full-width {
     width: 100%;
 }
 
-td {
-    padding: 1rem;
-    width: auto;
-}
-
 .titulo {
     padding: 1rem;
     width: auto;
-    margin: 15px;
+    margin: 16px;
     justify-content: center;
     text-align: center;
-    font-size: 18px;
+    font-size: 24px;
     color: #53a2da;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 0px;
 }
 
 .botones {
     margin: auto;
+    padding-top: 10px;
 }
 
 .btnV {
@@ -50,4 +46,68 @@ td {
 .btnV:hover {
     background-color: white;
     color: rgb(74, 131, 238);
+    cursor: pointer;
+}
+
+.labelPrincipal {
+    font-weight: bolder;
+    margin-right: 0px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.labelSecundario {
+    margin-right: 5px;
+}
+
+hr {
+    color: #53a2da;
+}
+
+.subTitulo {
+    justify-content: center;
+    text-align: left;
+    font-size: 14px;
+    color: #53a2da;
+}
+
+.labelSecundario {
+    height: 25px;
+    margin-right: 70px;
+    border-radius: 3px;
+}
+
+.labelSecundarioGender {
+    height: 25px;
+    margin-right: 120px;
+    border-radius: 3px;
+}
+
+.labelSecundarioMail {
+    height: 25px;
+    margin-right: 175px;
+    border-radius: 3px;
+}
+
+.labelSecundarioMobile {
+    height: 25px;
+    margin-right: 60px;
+    border-radius: 3px;
+}
+
+.labelSecundarioCurrency {
+    height: 25px;
+    margin-right: 40px;
+    border-radius: 3px;
+}
+
+.labelSecundarioCity {
+    height: 25px;
+    margin-right: 125px;
+    border-radius: 3px;
+}
+
+.divLabels {
+    width: 100%;
+    padding-bottom: 10px;
 }

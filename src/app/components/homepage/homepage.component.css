@@ -28,4 +28,5 @@
 
 .btn {
     display: block;
+    cursor: pointer;
 }
