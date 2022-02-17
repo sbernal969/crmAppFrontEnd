@@ -78,10 +78,10 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
-      width: '250px',
+      width: '300px',
       data: {
-        title: 'Titulo nuevo', 
-        message: '¿Quieres crear el customer?',
+        title: 'Create Customer', 
+        message: '¿Are you sure?',
         msgBtnNo: 'No',
         msgBtnYes: 'Yes',
         option: 0

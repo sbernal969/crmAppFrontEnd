@@ -1,5 +1,5 @@
 export class Country{
     id: number;
-    glosa: string;
+    name: string;
     iso3: string;
 }
