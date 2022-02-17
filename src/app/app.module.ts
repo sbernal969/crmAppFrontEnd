@@ -21,6 +21,7 @@ import { MatCardModule } from "@angular/material/card";
 import { Routing } from "./app.routing";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PopupConfirmacionComponent } from './components/utils/popup-confirmacion/popup-confirmacion.component';
 import { ToastrModule } from "ngx-toastr";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -46,6 +47,7 @@ import {MatDividerModule} from '@angular/material/divider';
     LoginHelpComponent,
     CreateCustomerComponent,
     ForgotPasswordComponent,
+    PopupConfirmacionComponent,
   ],
   imports: [
     BrowserModule,
