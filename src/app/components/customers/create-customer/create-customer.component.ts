@@ -25,6 +25,18 @@ import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import * as rutUtils from "src/utils/RutUtils";
 import { Router } from "@angular/router";
+import { CountryService } from '../../../services/country.service';
+import { Country } from "src/app/models/interface/country.interface";
+import { NationalityService } from '../../../services/nationality.service';
+import { Nationality } from '../../../models/interface/nationality.interface';
+import { GenderService } from '../../../services/gender.service';
+import { Gender } from "src/app/models/interface/gender.interface";
+import { CountryCodeService } from '../../../services/country-code.service';
+import { CountryCode } from '../../../models/interface/country-code.interface';
+import { Currency } from "src/app/models/interface/currency.interface";
+import { CurrenciesService } from '../../../services/currency.service';
+import { PopupConfirmacionComponent } from "../../utils/popup-confirmacion/popup-confirmacion.component";
+import { MatDialog } from "@angular/material/dialog";
 
 const moment = _rollupMoment || _moment;
 
@@ -41,10 +53,10 @@ export const MY_FORMATS = {
 };
 
 //Probar Combos
-interface Country {
-  id: string;
-  glosa: string;
-}
+// interface Country {
+//   id: string;
+//   glosa: string;
+// }
 
 @Component({
   selector: "app-create-customer",
@@ -67,7 +79,11 @@ export class CreateCustomerComponent {
   displayColumns = ["name", "startDate", "delete"];
   dataSource$: Observable<any>; 
   selectedFilter="1";
-  countries                    : Country[] = [];
+  countries: Country[] = [];
+  nationalities: Nationality[] = [];
+  genders: Gender[] = [];
+  // countryCodes: CountryCode[] = [];
+  currencies: Currency[] = [];
   resultado!: string;
   selectedCheck = -1; 
   rut = new FormControl();
@@ -96,11 +112,16 @@ export class CreateCustomerComponent {
         status => this.chipList.errorState = status === 'INVALID'
       ); */
 
-      this.countries = [
-        {id: '40', glosa: 'Chile'},
-        {id: '1', glosa: 'España'},
-        {id: '2', glosa: 'Argentina'}
-    ];
+    //   this.countries = [
+    //     {id: '40', glosa: 'Chile'},
+    //     {id: '1', glosa: 'España'},
+    //     {id: '2', glosa: 'Argentina'}
+    // ];
+    this.loadCmbCountryBith();
+    this.loadCmbNationalities();
+    this.loadCmbGenders();
+    // this.loadCmbCountryCode();
+    this.loadCmbCurrency();
   }
 
   
@@ -114,7 +135,13 @@ export class CreateCustomerComponent {
   ];
 
 
-  constructor(private router: Router) { 
+  constructor(private router: Router,
+    private countryService: CountryService,
+    private nationalityService: NationalityService,
+    private genderService: GenderService,
+    private countryCode: CountryCodeService,
+    private currencyService: CurrenciesService,
+    public dialog: MatDialog) { 
     
     this.filteredNacionalidad = this.nacionalidadCtrl.valueChanges.pipe(
       startWith(<string>null),
@@ -378,5 +405,84 @@ this.selectedFilter ="0";
 }
 
 btnHome(){this.router.navigate(["/homepage/"]);}
+
+loadCmbCountryBith(){
+  this.countryService.getCountry()
+  .subscribe(
+    res => {
+      if(res){
+        this.countries = this.countries.concat(res.data);
+      }
+    }
+  )
+}
+
+loadCmbNationalities(){
+  this.nationalityService.getNationalities()
+  .subscribe(
+    res => {
+      if(res){
+        this.nationalities = this.nationalities.concat(res.data);
+      }
+    }
+  )
+}
+
+loadCmbGenders(){
+  this.genderService.getGenders()
+  .subscribe(
+    res => {
+      if(res){
+        this.genders = this.genders.concat(res.data);
+      }
+    }
+  )
+}
+
+// loadCmbCountryCode(){
+//   this.countryService.getCountry()
+//   .subscribe(
+//     res => {
+//       if(res){
+//         this.count = this.countryCodes.concat(res.data);
+//       }
+//     }
+//   )
+// }
+
+loadCmbCurrency(){
+  this.currencyService.getCurrency()
+  .subscribe(
+    res => {
+      if(res){
+        this.currencies = this.currencies.concat(res.data);
+      }
+    }
+  )
+}
+
+createCustomer(){
+  this.openDialog();
+}
+
+openDialog(): void {
+  const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
+    width: '300px',
+    data: {
+      title: 'Create Customer', 
+      message: '¿Are you sure?',
+      msgBtnNo: 'No',
+      msgBtnYes: 'Yes',
+      option: 0
+    },
+  });
+
+  dialogRef.afterClosed().subscribe(
+    result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      
+  });
+}
 
 }

@@ -77,19 +77,20 @@
                 (formCreate.get('dateOfBirth')?.dirty ||
                   formCreate.get('dateOfBirth')?.touched)
               ">{{ validation.message }}
-            </mat-error>
-          </mat-error>
-        </mat-form-field>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
 
-        <!-- Country Birth -->
-        <mat-form-field appearance="fill">
-          <mat-label>Country of Birth</mat-label>
-          <mat-select required formControlName="country">
-            <mat-option value="option">Chile</mat-option>
-            <mat-option value="option">Argentina</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.country">
-            <mat-error class="error-message" *ngIf="
+                <!-- Country Birth -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Country of Birth</mat-label>
+                    <mat-select required formControlName="country">
+                        <mat-option *ngFor="let country of countries" value="country.value">
+                            {{ country.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.country">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('country')?.hasError(validation.type) &&
                 (formCreate.get('country')?.dirty ||
                   formCreate.get('country')?.touched)
@@ -145,34 +146,34 @@
             </mat-error>
           </mat-error> </mat-form-field> -->
 
-        <!-- Nacionality  -->
-        <mat-form-field appearance="fill">
-          <mat-label>Nacionality</mat-label>
-          <mat-select required formControlName="nacionalidad">
-            <mat-option value="option">Chilena</mat-option>
-            <mat-option value="option">Argentina</mat-option>
-            <mat-option value="option">Venezolana</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.nacionalidad">
-            <mat-error class="error-message" *ngIf="
+                <!-- Nacionality  -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Nacionality</mat-label>
+                    <mat-select required formControlName="nacionalidad">
+                        <mat-option *ngFor="let nationality of nationalities" value="nationality.value">
+                            {{ nationality.glosa }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.nacionalidad">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('nacionalidad')?.hasError(validation.type) &&
                 (formCreate.get('nacionalidad')?.dirty ||
                   formCreate.get('nacionalidad')?.touched)
               ">{{ validation.message }}
-            </mat-error>
-          </mat-error>
-        </mat-form-field>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
 
-        <!-- Gender  -->
-        <mat-form-field class="gender" appearance="fill">
-          <mat-label>Gender</mat-label>
-          <mat-select required formControlName="gender">
-            <mat-option value="option">Female</mat-option>
-            <mat-option value="option">Male</mat-option>
-            <mat-option value="option">Non Binary</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.gender">
-            <mat-error class="error-message" *ngIf="
+                <!-- Gender  -->
+                <mat-form-field class="gender" appearance="fill">
+                    <mat-label>Gender</mat-label>
+                    <mat-select required formControlName="gender">
+                        <mat-option *ngFor="let gender of genders" value="gender.value">
+                            {{ gender.glosa }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.gender">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('gender')?.hasError(validation.type) &&
                 (formCreate.get('gender')?.dirty ||
                   formCreate.get('gender')?.touched)
@@ -197,19 +198,20 @@
                 (formCreate.get('email')?.dirty ||
                   formCreate.get('email')?.touched)
               ">{{ validation.message }}
-            </mat-error>
-          </mat-error>
-        </mat-form-field>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
 
-        <!-- Mobile Number -->
-        <mat-form-field appearance="fill" class="code">
-          <mat-label>Code</mat-label>
-          <mat-select required formControlName="codeMobile">
-            <mat-option value="option">+56</mat-option>
-            <mat-option value="option">+52</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.codeMobile">
-            <mat-error class="error-message" *ngIf="
+                <!-- Mobile Number -->
+                <mat-form-field appearance="fill" class="code">
+                    <mat-label>Code</mat-label>
+                    <mat-select required formControlName="codeMobile">
+                        <mat-option *ngFor="let code of countries" value="code.value">
+                            {{ code.code + " (" + code.name + ")" }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.codeMobile">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('codeMobile')?.hasError(validation.type) &&
                 (formCreate.get('codeMobile')?.dirty ||
                   formCreate.get('codeMobile')?.touched)
@@ -227,19 +229,20 @@
                 (formCreate.get('mobileNumber')?.dirty ||
                   formCreate.get('mobileNumber')?.touched)
               ">{{ validation.message }}
-            </mat-error>
-          </mat-error>
-        </mat-form-field>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
 
-        <!-- Fix Phone -->
-        <mat-form-field appearance="fill" class="code">
-          <mat-label>Code</mat-label>
-          <mat-select formControlName="codefix">
-            <mat-option value="option">+56</mat-option>
-            <mat-option value="option">3</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.codefix">
-            <mat-error class="error-message" *ngIf="
+                <!-- Fix Phone -->
+                <mat-form-field appearance="fill" class="code">
+                    <mat-label>Code</mat-label>
+                    <mat-select formControlName="codefix">
+                        <mat-option *ngFor="let code of countries" value="code.value">
+                            {{ code.code + " (" + code.name + ")" }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.codefix">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('codefix')?.hasError(validation.type) &&
                 (formCreate.get('codefix')?.dirty ||
                   formCreate.get('codefix')?.touched)
@@ -257,28 +260,28 @@
                 (formCreate.get('fixNumber')?.dirty ||
                   formCreate.get('fixNumber')?.touched)
               ">{{ validation.message }}
-            </mat-error>
-          </mat-error>
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
 
-  <!-- Address of Residency  -->
-  <mat-divider class="lineaTable"></mat-divider>
-  <table class="conterTable" cellspacing="0">
-    <tr>
-      <td>
-        <!-- Country  -->
-        <mat-form-field appearance="fill">
-          <mat-label>Country</mat-label>
-          <mat-select required formControlName="countries" (selectionChange)="select($event)">
-            <mat-option *ngFor="let country of countries" [value]="country.id">
-              {{ country.glosa }}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.countries">
-            <mat-error class="error-message" *ngIf="
+    <!-- Address of Residency  -->
+    <mat-divider class="lineaTable"></mat-divider>
+    <table class="conterTable" cellspacing="0">
+        <tr>
+            <td>
+                <!-- Country  -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <mat-select required formControlName="countries" (selectionChange)="select($event)">
+                        <mat-option *ngFor="let country of countries" [value]="country.id">
+                            {{ country.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.countries">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('countries')?.hasError(validation.type) &&
                 (formCreate.get('countries')?.dirty ||
                   formCreate.get('countries')?.touched)
@@ -379,31 +382,32 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- Adicional  -->
+                <!-- Adicional  -->
 
-        <mat-form-field appearance="fill" class="adicional">
-          <mat-label>Adicional</mat-label>
-          <input matInput #input maxlength="50" formControlName="adicional" />
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+                <mat-form-field appearance="fill" class="adicional">
+                    <mat-label>Adicional</mat-label>
+                    <input matInput #input maxlength="50" formControlName="adicional" />
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
 
-  <!-- Currency  -->
-  <mat-divider class="lineaTable"></mat-divider>
-  <table class="conterTable" cellspacing="0">
-    <h2 class="subTitulo">Monthy Income</h2>
-    <tr>
-      <td>
-        <!-- Currency  -->
-        <mat-form-field appearance="fill">
-          <mat-label>Currency</mat-label>
-          <mat-select required formControlName="currency">
-            <mat-option value="option">US</mat-option>
-            <mat-option value="option">CLP</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.currency">
-            <mat-error class="error-message" *ngIf="
+    <!-- Currency  -->
+    <mat-divider class="lineaTable"></mat-divider>
+    <table class="conterTable" cellspacing="0">
+        <h2 class="subTitulo">Monthy Income</h2>
+        <tr>
+            <td>
+                <!-- Currency  -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Currency</mat-label>
+                    <mat-select required formControlName="currency">
+                        <mat-option *ngFor="let currency of currencies" value="currency.value">
+                            {{ currency.glosa }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.currency">
+                        <mat-error class="error-message" *ngIf="
                 formCreate.get('currency')?.hasError(validation.type) &&
                 (formCreate.get('currency')?.dirty ||
                   formCreate.get('currency')?.touched)
@@ -421,17 +425,19 @@
                 (formCreate.get('monthyIncome')?.dirty ||
                   formCreate.get('monthyIncome')?.touched)
               ">{{ validation.message }}
-            </mat-error>
-          </mat-error>
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
-  <section class="sectionBtn">
-    <button mat-raised-button class="btnPrincipal">Create</button>
-    <button mat-raised-button class="btnPrincipal">Cancel</button>
-    <button mat-raised-button class="btnPrincipal" (click)="btnHome()">
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+    <section class="sectionBtn">
+        <button mat-raised-button (click)="createCustomer()" class="btnPrincipal">
+      Create
+    </button>
+        <button mat-raised-button class="btnPrincipal">Cancel</button>
+        <button mat-raised-button class="btnPrincipal" (click)="btnHome()">
       Home
     </button>
-  </section>
+    </section>
 </form>
