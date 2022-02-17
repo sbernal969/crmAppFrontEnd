@@ -10,7 +10,6 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomepageComponent } from "./components/homepage/homepage.component";
 import { ForgotPasswordComponent } from "./components/login/forgot-password/forgot-password.component";
-import { LoginHelpComponent } from "./components/login/login-help/login-help.component";
 import { LoginPageComponent } from "./components/login/login-page/login-page.component";
 import { PreventLoggedInAccess } from "./components/login/prevent-logged-in-access";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -21,6 +20,7 @@ import { MatCardModule } from "@angular/material/card";
 import { Routing } from "./app.routing";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatButtonModule} from '@angular/material/button';
 import { PopupConfirmacionComponent } from './components/utils/popup-confirmacion/popup-confirmacion.component';
 import { ToastrModule } from "ngx-toastr";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -35,6 +35,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import {MatDividerModule} from '@angular/material/divider';
+import { LoginHelpComponent } from "./components/login/login-help/login-help.component";
+import { VisualizationComponent } from "./components/visualization/visualization.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import {MatDividerModule} from '@angular/material/divider';
     LoginHelpComponent,
     CreateCustomerComponent,
     ForgotPasswordComponent,
+    VisualizationComponent,
     PopupConfirmacionComponent,
   ],
   imports: [
@@ -72,8 +75,10 @@ import {MatDividerModule} from '@angular/material/divider';
     ReactiveFormsModule,
     MatChipsModule,
     MatIconModule,
-    MatAutocompleteModule,MatMomentDateModule,
-    MatDividerModule
+    MatAutocompleteModule,
+    MatMomentDateModule,
+    MatDividerModule,
+    MatButtonModule,
     
   ],
   providers: [PreventLoggedInAccess, MatDatepickerModule, MatNativeDateModule ],

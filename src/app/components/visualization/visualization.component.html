@@ -1,0 +1,67 @@
+<div class="container-md-px4 contenedor">
+    <div class="titulo">
+        <h4><b>Visualization of Customer or Prospect</b></h4>
+    </div>
+
+    <div class="divLabels">
+        <p class="subTitulo">Personal Information</p>
+        <label class="labelPrincipal">ID Number:</label>
+        <label class="labelSecundario">{{customer.personalId}}</label>
+        <label class="labelPrincipal">Full Name:</label>
+        <label class="labelSecundario">{{customer.name + ' ' + customer.familyFirstName + ' ' + customer.familySecondName}}</label>
+        <label class="labelPrincipal">Date of Birth:</label>
+        <label class="labelSecundario">{{customer.birth}}</label>
+        <label class="labelPrincipal">Nacionality:</label>
+        <label class="labelSecundario">{{customer.nacionalityName}}</label>
+    </div>
+
+    <div class="divLabels">
+        <label class="labelPrincipal">Gender:</label>
+        <label class="labelSecundarioGender">{{customer.genderType}}</label>
+        <label class="labelPrincipal">Email:</label>
+        <label class="labelSecundarioMail">{{customer.email}}</label>
+        <label class="labelPrincipal">Mobile Number:</label>
+        <label class="labelSecundarioMobile">{{customer.mobileNumberCode + ' ' + customer.mobileNumber}}</label>
+
+    </div>
+    <div class="divLabels">
+        <label class="labelPrincipal">Fix Telephone:</label>
+        <label class="labelSecundario">{{customer.fixNumberCode + ' ' + customer.fixNumber}}</label>
+
+    </div>
+    <hr>
+
+    <div class="divLabels">
+        <p class="subTitulo">Address</p>
+        <label class="labelPrincipal">City:</label>
+        <label class="labelSecundarioCity">{{customer.addressCity}}</label>
+        <label class="labelPrincipal">Street Name:</label>
+        <label class="labelSecundario">{{customer.addressStreet}}</label>
+        <label class="labelPrincipal">Number:</label>
+        <label class="labelSecundario">{{customer.addressNumber}}</label>
+        <label class="labelPrincipal">Commune:</label>
+        <label class="labelSecundario">{{customer.addressComune}}</label>
+    </div>
+
+    <div class="divLabels">
+        <label class="labelPrincipal">Postal Code:</label>
+        <label class="labelSecundario">{{customer.addressPostalCode}}</label>
+        <label class="labelPrincipal">Aditional Information:</label>
+        <label class="labelSecundario">{{customer.addressAditional}}</label>
+    </div>
+    <hr>
+
+    <div class="divLabels">
+        <p class="subTitulo">Monthly Income</p>
+        <label class="labelPrincipal">Currency:</label>
+        <label class="labelSecundarioCurrency">{{customer.currencyName}}</label>
+        <label class="labelPrincipal">Amount:</label>
+        <label class="labelSecundario">{{customer.income}}</label>
+    </div>
+
+    <div class="botones">
+        <button class="btnV" mat-raised-button color="primary" (click)="btnHome()">Home</button>
+        <button class="btnV" mat-raised-button color="primary">Create</button>
+    </div>
+
+</div>

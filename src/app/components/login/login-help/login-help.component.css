@@ -11,6 +11,7 @@ button {
 button:hover {
     background-color: white;
     color: rgb(74, 131, 238);
+    cursor: pointer;
 }
 
 h2 {
