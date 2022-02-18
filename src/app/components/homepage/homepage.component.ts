@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit {
   }
 
   btnCreate(){this.router.navigate(["/create-customer/"]);}
+
 }
 
 
