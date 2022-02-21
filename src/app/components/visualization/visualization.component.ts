@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/interface/customer.interface';
 import { CustomerService } from 'src/app/services/customer.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-visualization',
@@ -62,47 +63,49 @@ export class VisualizationComponent implements OnInit {
      tipeOfClient: 0
    };
    isCustomer: number = 0;
-   
+   idCustomer: number = 0;
 
   constructor(
     private customerService: CustomerService,
     private router: Router,
-    private msgService: MessageService,
-    
-    ) {}
+    private activatedRoute: ActivatedRoute,
 
+    ) 
+    
+    {
+      try {
+        this.idCustomer = this.router.getCurrentNavigation().extras.state.idCustomer;
+      } catch (error) {
+        this.btnHome();
+      }
+      
+    }
 
 
   ngOnInit() {
-    this.subscription = this.msgService.getMessage().subscribe(
-      msg => console.log(msg)
-      
-    )
-    this.customerService.getCustomer(28)
+       
+
+    this.customerService.getCustomer(this.idCustomer)
     .subscribe(
       res => {
         if(res){
-          console.log(res.data);
           this.customer = res.data;
           this.isCustomer = res.data.tipeOfClient;
         }}
     )
-
-
   }
 
   btnHome() {
-  this.router.navigate(
-    ['/homepage/']
+  this.router.navigateByUrl(
+    '/homepage'
   );
   }
 
   btnCreate() {
-  this.router.navigate(
-    ['/create-customer/']
+  this.router.navigateByUrl(
+    '/create-customer'
   );
   }
-
 
 
 }

@@ -29,10 +29,10 @@ td {
 }
 
 .email {
-  width: 38% !important;
+  width: 30% !important;
 }
 .code {
-  width: 90px !important;
+  width: 130px !important;
 }
 
 .date {
@@ -128,11 +128,9 @@ td {
   margin-top: 0px;
 }
 
-
-.subTitulo { 
+.subTitulo {
   justify-content: center;
   text-align: left;
   font-size: 14px;
   color: #53a2da;
-
 }

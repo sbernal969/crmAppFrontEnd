@@ -12,51 +12,35 @@
                             <form method="post" class="form-outline form-white mb-4">
                                 <label class="form-label" for="typeEmailX">User</label>
                                 <input class="form-control form-control-sm" type="text" name="userName" [(ngModel)]="loginForm.user.val" #user="ngModel" />
-                                <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.user.isValid() && user.touched">{{ loginForm.user.error }}</small
-                >
-                <p></p>
-                <label class="form-label" for="typePasswordX">Password</label>
-                <input
-                  class="form-control form-control-sm"
-                  type="password"
-                  name="password"
-                  [(ngModel)]="loginForm.password.val"
-                  required="required"
-                  #password="ngModel"
-                />
-                <small
-                  class="text-light mt-1 px-2 py-1 rounded"
-                  *ngIf="!loginForm.password.isValid() && password.touched"
-                  >{{ loginForm.password.error }}</small
-                >
-                <br>
+                                <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.user.isValid() && user.touched">{{
+                  loginForm.user.error }}</small>
+                                <p></p>
+                                <label class="form-label" for="typePasswordX">Password</label>
+                                <input class="form-control form-control-sm" type="password" name="password" [(ngModel)]="loginForm.password.val" required="required" #password="ngModel" />
+                                <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.password.isValid() && password.touched">{{ loginForm.password.error }}</small>
+                                <br>
 
-                <p class="small mb-5 pb-lg-2">
-                  <a mat-list-item routerLink="/forgot-password">
-                    <span class="label">Forgot password</span>
-                  </a>
-                </p>
-                <button
-                  type="submit"
-                  class="btn btn-outline-light btn-sm px-5"
-                  [disabled]="!isValidForm"
-                  (click)="btnLogin()"
-                >
+                                <p class="small mb-5 pb-lg-2">
+                                    <a mat-list-item routerLink="/forgot-password">
+                                        <span class="label">Forgot password</span>
+                                    </a>
+                                </p>
+                                <button type="submit" class="btn btn-outline-light btn-sm px-5" [disabled]="!isValidForm" (click)="btnLogin()">
                   Login
                 </button>
-              
-                <!-- link Login Help -->
-                <div>
-                  <br>
-                  <button class="btn-login-help" (click)="loginHelp()" type="submit" >
+
+                                <!-- link Login Help -->
+                                <div>
+                                    <br>
+                                    <button class="btn-login-help" (click)="loginHelp()" type="submit">
                     <small>Login Help</small>
-                                </button>
+                  </button>
+                                </div>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
