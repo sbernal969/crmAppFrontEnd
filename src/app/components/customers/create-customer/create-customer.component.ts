@@ -207,7 +207,7 @@ export class CreateCustomerComponent {
     //countryAddress: [{ type: "required", message: "Required" }],
     city: [{ type: "required", message: "Required" }],
     streetName: [{ type: "required", message: "Required" }],
-    number: [{ type: "required", message: "Required" }],
+    number: [{ type: "required", message: "Required"},  { type: "pattern", message: "Only numbers" },],
     currency: [{ type: "required", message: "Required" }],
     monthyIncome: [
       { type: "required", message: "Required" },
@@ -274,7 +274,7 @@ export class CreateCustomerComponent {
    // countryAddress: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
     streetName: new FormControl("", [Validators.required]),
-    number: new FormControl("", [Validators.required]),
+    number: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")],),
     currency: new FormControl("", [Validators.required]),
     monthyIncome: new FormControl("", [
       Validators.required,
@@ -291,6 +291,7 @@ export class CreateCustomerComponent {
     else this.resultado = "Hay datos inválidos en el formulario";
   }
 
+  //No empresa
   validateArrayNotEmpty(c: FormControl) {
     if (c.value && c.value.length === 0) {
       return {
@@ -543,14 +544,32 @@ export class CreateCustomerComponent {
 
   serviceCreate(customer: CreateCustomer) {
     var responsePost = this.customerService.postCustomer(this.customer); 
-      
-        //this.customer = res.data;   
-        this.idCustomerCreated = responsePost.subscribe(
+    try {
+       this.idCustomerCreated = responsePost.subscribe(
           res => {
             console.log("idCustomer: " + res);
             this.router.navigateByUrl("/visualization", {state: {idCustomer: res.data.idCustomer}});
           }
         )
+    } catch (error) {
+      const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
+        width: "300px",
+        data: {
+          title: "Information",
+          message: "Try again",         
+          msgBtnYes: "Ok",
+          option: 0,
+        },
+      });
+  
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log("The dialog was closed");
+        console.log(result);
+      });
+    }
+        //this.customer = res.data;   
+
+       
       }
 
   openDialog(): void {
