@@ -543,14 +543,32 @@ export class CreateCustomerComponent {
 
   serviceCreate(customer: CreateCustomer) {
     var responsePost = this.customerService.postCustomer(this.customer); 
-      
-        //this.customer = res.data;   
-        this.idCustomerCreated = responsePost.subscribe(
+    try {
+       this.idCustomerCreated = responsePost.subscribe(
           res => {
             console.log("idCustomer: " + res);
             this.router.navigateByUrl("/visualization", {state: {idCustomer: res.data.idCustomer}});
           }
         )
+    } catch (error) {
+      const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
+        width: "300px",
+        data: {
+          title: "Information",
+          message: "Try again",         
+          msgBtnYes: "Ok",
+          option: 0,
+        },
+      });
+  
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log("The dialog was closed");
+        console.log(result);
+      });
+    }
+        //this.customer = res.data;   
+
+       
       }
 
   openDialog(): void {
