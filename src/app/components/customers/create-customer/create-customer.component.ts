@@ -291,7 +291,6 @@ export class CreateCustomerComponent {
     else this.resultado = "Hay datos inválidos en el formulario";
   }
 
-  //No empresa
   validateArrayNotEmpty(c: FormControl) {
     if (c.value && c.value.length === 0) {
       return {
