@@ -287,6 +287,7 @@ export class CreateCustomerComponent {
 
 
   getErrorMessage() {
+    console.log("messa")
     if (this.formCreate.valid) this.resultado = "Todos los datos son válidos";
     else this.resultado = "Hay datos inválidos en el formulario";
   }
