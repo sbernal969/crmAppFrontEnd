@@ -42,6 +42,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { CustomerService } from "src/app/services/customer.service";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { MatCheckboxChange } from "@angular/material/checkbox";
+import { MessageService } from "src/app/services/message.service";
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -84,6 +85,8 @@ export class CreateCustomerComponent {
   nacionalidadCtrl = new FormControl();
   filteredNacionalidad: Observable<string[]>;
   nacionalidades: string[] = [];
+
+  idCustomerCreated: any;
 
   customer: CreateCustomer = {
     personalId: "",
@@ -148,7 +151,8 @@ export class CreateCustomerComponent {
     private countryCode: CountryCodeService,
     private currencyService: CurrenciesService,
     public dialog: MatDialog,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private msgService: MessageService
   ) {
     /*  this.filteredNacionalidad = this.nacionalidadCtrl.valueChanges.pipe(
       startWith(<string>null),
@@ -538,15 +542,16 @@ export class CreateCustomerComponent {
   }
 
   serviceCreate(customer: CreateCustomer) {
-    this.customerService.postCustomer(this.customer).subscribe((res) => {
-      if (res) {
-        console.log(res);
+    var responsePost = this.customerService.postCustomer(this.customer); 
+      
         //this.customer = res.data;   
-        this.router.navigate(["/visualization/"]);
-
+        this.idCustomerCreated = responsePost.subscribe(
+          res => {
+            console.log("idCustomer: " + res);
+            this.router.navigateByUrl("/visualization", {state: {idCustomer: res.data.idCustomer}});
+          }
+        )
       }
-    });
-  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {

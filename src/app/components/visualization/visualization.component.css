@@ -79,13 +79,13 @@ hr {
 
 .labelSecundarioGender {
     height: 25px;
-    margin-right: 120px;
+    margin-right: 148px;
     border-radius: 3px;
 }
 
 .labelSecundarioMail {
     height: 25px;
-    margin-right: 175px;
+    margin-right: 115px;
     border-radius: 3px;
 }
 
@@ -104,6 +104,12 @@ hr {
 .labelSecundarioCity {
     height: 25px;
     margin-right: 125px;
+    border-radius: 3px;
+}
+
+.labelSecundarioPostal {
+    height: 25px;
+    margin-right: 110px;
     border-radius: 3px;
 }
 
