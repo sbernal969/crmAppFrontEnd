@@ -291,6 +291,7 @@ export class CreateCustomerComponent {
     else this.resultado = "Hay datos inválidos en el formulario";
   }
 
+  //No empresa
   validateArrayNotEmpty(c: FormControl) {
     if (c.value && c.value.length === 0) {
       return {
@@ -471,8 +472,7 @@ export class CreateCustomerComponent {
   }
 
 
-  btnCreateCustomer() {
-    console.log(this.formCreate)
+  btnCreateCustomer() {    
     if (this.formCreate.valid) { this.createCustomer(); 
       console.log("OK")} else { console.log("NOK")}
 
@@ -551,6 +551,7 @@ export class CreateCustomerComponent {
           }
         )
     } catch (error) {
+      console.log("error create")
       const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
         width: "300px",
         data: {
