@@ -1,50 +1,46 @@
 <section>
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div id="bgColor" class="card text-black" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <div class="mb-md-5 mt-md-4 pb-5">
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">
-                Please enter your login and password!
-              </p>
-              <form method="post" class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">User</label>
-                <input class="form-control form-control-sm" type="text" name="userName" [(ngModel)]="loginForm.user.val"
-                  #user="ngModel" />
-                <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.user.isValid() && user.touched">{{
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div id="bgColor" class="card text-black" style="border-radius: 1rem">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                            <p class="text-white-50 mb-5">
+                                Please enter your login and password!
+                            </p>
+                            <form method="post" class="form-outline form-white mb-4">
+                                <label class="form-label" for="typeEmailX">User</label>
+                                <input class="form-control form-control-sm" type="text" name="userName" [(ngModel)]="loginForm.user.val" #user="ngModel" />
+                                <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.user.isValid() && user.touched">{{
                   loginForm.user.error }}</small>
-                <p></p>
-                <label class="form-label" for="typePasswordX">Password</label>
-                <input class="form-control form-control-sm" type="password" name="password"
-                  [(ngModel)]="loginForm.password.val" required="required" #password="ngModel" />
-                <small class="text-light mt-1 px-2 py-1 rounded"
-                  *ngIf="!loginForm.password.isValid() && password.touched">{{ loginForm.password.error }}</small>
-                <br>
+                                <p></p>
+                                <label class="form-label" for="typePasswordX">Password</label>
+                                <input class="form-control form-control-sm" type="password" name="password" [(ngModel)]="loginForm.password.val" required="required" #password="ngModel" />
+                                <small class="text-light mt-1 px-2 py-1 rounded" *ngIf="!loginForm.password.isValid() && password.touched">{{ loginForm.password.error }}</small>
+                                <br>
 
-                <p class="small mb-5 pb-lg-2">
-                  <a mat-list-item routerLink="/forgot-password">
-                    <span class="label">Forgot password</span>
-                  </a>
-                </p>
-                <button type="button" class="btn btn-outline-light btn-sm px-5" [disabled]="!isValidForm"
-                  (click)="btnLogin()">
+                                <p class="small mb-5 pb-lg-2">
+                                    <a mat-list-item routerLink="/forgot-password">
+                                        <span class="label">Forgot password</span>
+                                    </a>
+                                </p>
+                                <button type="submit" class="btn btn-outline-light btn-sm px-5" [disabled]="!isValidForm" (click)="btnLogin()">
                   Login
                 </button>
 
-                <!-- link Login Help -->
-                <div>
-                  <br>
-                  <button class="btn-login-help" (click)="loginHelp()">
+                                <!-- link Login Help -->
+                                <div>
+                                    <br>
+                                    <button class="btn-login-help" (click)="loginHelp()" type="submit">
                     <small>Login Help</small>
                   </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>

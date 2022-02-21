@@ -1,6 +1,9 @@
 <div class="container-md-px4 contenedor">
-    <div class="titulo">
-        <h4><b>Visualization of Customer or Prospect</b></h4>
+    <div class="titulo" [hidden]="isCustomer == 0">
+        <h4><b>Visualization of Customer</b></h4>
+    </div>
+    <div class="titulo" [hidden]="isCustomer == 1">
+        <h4><b>Visualization of Prospect</b></h4>
     </div>
 
     <div class="divLabels">
@@ -45,7 +48,7 @@
 
     <div class="divLabels">
         <label class="labelPrincipal">Postal Code:</label>
-        <label class="labelSecundario">{{customer.addressPostalCode}}</label>
+        <label class="labelSecundarioPostal">{{customer.addressPostalCode}}</label>
         <label class="labelPrincipal">Aditional Information:</label>
         <label class="labelSecundario">{{customer.addressAditional}}</label>
     </div>
@@ -61,7 +64,7 @@
 
     <div class="botones">
         <button class="btnV" mat-raised-button color="primary" (click)="btnHome()">Home</button>
-        <button class="btnV" mat-raised-button color="primary">Create</button>
+        <button class="btnV" mat-raised-button color="primary" (click)="btnCreate()">Create</button>
     </div>
 
 </div>
