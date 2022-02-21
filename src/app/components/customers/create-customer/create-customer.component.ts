@@ -203,7 +203,7 @@ export class CreateCustomerComponent {
     //countryAddress: [{ type: "required", message: "Required" }],
     city: [{ type: "required", message: "Required" }],
     streetName: [{ type: "required", message: "Required" }],
-    number: [{ type: "required", message: "Required" }],
+    number: [{ type: "required", message: "Required"},  { type: "pattern", message: "Only numbers" },],
     currency: [{ type: "required", message: "Required" }],
     monthyIncome: [
       { type: "required", message: "Required" },
@@ -270,7 +270,7 @@ export class CreateCustomerComponent {
    // countryAddress: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
     streetName: new FormControl("", [Validators.required]),
-    number: new FormControl("", [Validators.required]),
+    number: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")],),
     currency: new FormControl("", [Validators.required]),
     monthyIncome: new FormControl("", [
       Validators.required,
