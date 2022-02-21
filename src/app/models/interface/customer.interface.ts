@@ -28,6 +28,6 @@ export interface Customer{
     income: number;
     currencyId: number;
     currencyName: string;
-    typeOfClient: number;
+    tipeOfClient: number;
 
 }

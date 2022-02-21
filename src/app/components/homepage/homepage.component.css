@@ -27,6 +27,13 @@
 }
 
 .btn {
+    color: white;
     display: block;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: white;
+    color: rgb(74, 131, 238);
     cursor: pointer;
 }
