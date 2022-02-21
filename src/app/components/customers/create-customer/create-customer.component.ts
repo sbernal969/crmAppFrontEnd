@@ -1,10 +1,8 @@
 import { CreateCustomer } from "./../../../models/interface/create-customer.interface";
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { of } from "rxjs";
 import {
-  AbstractControl,
-  FormBuilder,
+  AbstractControl, 
   FormControl,
   FormGroup,
   Validators,
@@ -41,7 +39,6 @@ import { Currency } from "src/app/models/interface/currency.interface";
 import { CurrenciesService } from "../../../services/currency.service";
 import { PopupConfirmacionComponent } from "../../utils/popup-confirmacion/popup-confirmacion.component";
 import { MatDialog } from "@angular/material/dialog";
-import { Customer } from "src/app/models/interface/customer.interface";
 import { CustomerService } from "src/app/services/customer.service";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { MatCheckboxChange } from "@angular/material/checkbox";
@@ -54,6 +51,9 @@ export const MY_FORMATS = {
   },
   display: {
     dateInput: "DD-MM-YYYY",
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
   },
 };
 
@@ -168,6 +168,7 @@ export class CreateCustomerComponent {
       { type: "required", message: "Required" },
       { type: "maxlength", message: "At least 9 characters long" },
       { type: "rutError", message: "Invalid Rut" },
+      { type: "NoEmpresa", message: "Rut only person" },
       {
         type: "pattern",
         message: "Only numbers and letter K",
@@ -190,10 +191,10 @@ export class CreateCustomerComponent {
     dateOfBirth: [{ type: "required", message: "Required" }],
     country: [{ type: "required", message: "Required" }],
     countries: [{ type: "required", message: "Required" }],
-    nationality: [
+   /*  nationality: [
       { type: "required", message: "Required" },
       { type: "validatorNacionalidad", message: "uno al menos" },
-    ],
+    ], */
     nacionalidad: [{ type: "required", message: "Required" }],
     gender: [{ type: "required", message: "Required" }],
     mobileNumber: [
@@ -203,7 +204,7 @@ export class CreateCustomerComponent {
     fixNumber: [{ type: "pattern", message: "Only numbers" }],
     codeMobile: [{ type: "required", message: "Required" }],
     codefix: [{ type: "required", message: "Required" }],
-    countryAddress: [{ type: "required", message: "Required" }],
+    //countryAddress: [{ type: "required", message: "Required" }],
     city: [{ type: "required", message: "Required" }],
     streetName: [{ type: "required", message: "Required" }],
     number: [{ type: "required", message: "Required" }],
@@ -219,11 +220,11 @@ export class CreateCustomerComponent {
     ],
     commune: [
 
-      { type: "pattern", message: "Invalid email" },
+      { type: "required", message: "Required" },
     ],
     postalcode: [
 
-      { type: "postalError", message: "Required" },
+      { type: "required", message: "Required" },
     ],
   };
 
@@ -234,7 +235,7 @@ export class CreateCustomerComponent {
       Validators.required,
       Validators.minLength(9),
       Validators.pattern("^[0-9]*[0-9Kk]*$"),
-      this.validatorRut,
+      this.validatorRut,this.validatorNoEmpresa
     ]),
     name: new FormControl("", [
       Validators.required,
@@ -252,10 +253,10 @@ export class CreateCustomerComponent {
     ]),
     country: new FormControl("", [Validators.required]),
     dateOfBirth: new FormControl("", [Validators.required]),
-    nationality: new FormControl("", [
+  /*   nationality: new FormControl("", [
       Validators.required,
       this.validateArrayNotEmpty,
-    ]),
+    ]), */
     nacionalidad: new FormControl("", [Validators.required]),
     gender: new FormControl("", [Validators.required]),
     mobileNumber: new FormControl("", [
@@ -270,7 +271,7 @@ export class CreateCustomerComponent {
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
     ]),
-    countryAddress: new FormControl("", [Validators.required]),
+   // countryAddress: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
     streetName: new FormControl("", [Validators.required]),
     number: new FormControl("", [Validators.required]),
@@ -372,6 +373,15 @@ export class CreateCustomerComponent {
     return null;
   }
 
+  validatorNoEmpresa(fc: AbstractControl) {
+    const value = fc.value as string;
+    if (!rutUtils.validateNoEmpresa(value)) {
+      return { NoEmpresa: true };
+    }
+    return null;
+  }
+
+
   validatorCheck() {
     if (this.selectedCheck == -1) {
       return false;
@@ -400,6 +410,7 @@ export class CreateCustomerComponent {
       this.formCreate.controls["postalcode"].setValidators(null);
       this.formCreate.controls["commune"].updateValueAndValidity();
       this.formCreate.controls["postalcode"].updateValueAndValidity();
+      this.formCreate.controls.commune.setValue("")
       this.selectedFilter = "0";
     } else {
 
@@ -407,6 +418,7 @@ export class CreateCustomerComponent {
       this.formCreate.controls["commune"].setValidators(null);
       this.formCreate.controls["commune"].updateValueAndValidity();
       this.formCreate.controls["postalcode"].updateValueAndValidity();
+      this.formCreate.controls.postalcode.setValue("")
       this.selectedFilter = "1";
     }
   }
@@ -458,11 +470,21 @@ export class CreateCustomerComponent {
     });
   }
 
+
+  btnCreateCustomer() {
+    console.log(this.formCreate)
+    if (this.formCreate.valid) { this.createCustomer(); 
+      console.log("OK")} else { console.log("NOK")}
+
+  
+  }
   createCustomer() {
     if (!this.validatorCheck()) {
       this.isChecked = false;
       return;
     } else { this.isChecked = true; }
+
+
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
       width: "300px",
       data: {
@@ -514,7 +536,7 @@ export class CreateCustomerComponent {
           (this.customer.tipeOfClient = this.selectedCheck);
 
         this.serviceCreate(this.customer);
-        // this.router.navigate(["/visualization/"]);
+       
       }
     });
   }
@@ -530,10 +552,6 @@ export class CreateCustomerComponent {
           }
         )
       }
-
-  /*   public onDateChange(event: MatDatepickerInputEvent<Date>): void {
-      console.log("Teste", event.value);
-    } */
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
