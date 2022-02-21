@@ -4,6 +4,8 @@ import { LoginPageComponent } from "./components/login/login-page/login-page.com
 import { RouterModule, Routes } from "@angular/router";
 import { HomepageComponent } from "./components/homepage/homepage.component";
 import { PreventLoggedInAccess } from "./components/login/prevent-logged-in-access";
+import { VisualizationComponent } from "./components/visualization/visualization.component";
+import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
 
 const appRoutes: Routes = [
   { path: "login", component: LoginPageComponent },
@@ -18,8 +20,17 @@ const appRoutes: Routes = [
     component: ForgotPasswordComponent
   },
   {
+    path: "list-customer",
+    component: ListCustomerComponent
+  },
+  {
     path: "homepage",
     component: HomepageComponent,
+    canActivate: [PreventLoggedInAccess],
+  },
+  {
+    path: "visualization",
+    component: VisualizationComponent,
     canActivate: [PreventLoggedInAccess],
   },
   { path: "", redirectTo: "/login", pathMatch: "full" },
