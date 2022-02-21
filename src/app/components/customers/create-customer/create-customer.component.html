@@ -225,7 +225,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Mobile Number</mat-label>
-          <input matInput #input maxlength="11" formControlName="mobileNumber" />
+          <input matInput #input maxlength="11" formControlName="mobileNumber" required />
           <mat-error *ngFor="let validation of validation_messages.mobileNumber">
             <mat-error class="error-message" *ngIf="
                 formCreate.get('mobileNumber')?.hasError(validation.type) &&
@@ -436,7 +436,7 @@
     </tr>
   </table>
   <section class="sectionBtn">
-    <button mat-raised-button (click)="createCustomer()" class="btnPrincipal">
+    <button mat-raised-button (click)="btnCreateCustomer()" class="btnPrincipal">
       Create
     </button>
     <button mat-raised-button class="btnPrincipal">Cancel</button>
