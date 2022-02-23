@@ -3,6 +3,6 @@
     <p>{{data.message}}</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button class="btnPrincipal" [mat-dialog-close]="optionNo">{{data.msgBtnNo}}</button>
+    <button mat-raised-button class="btnPrincipal" [mat-dialog-close]="optionNo"  [hidden]="data.hiddenBtn">{{data.msgBtnNo}}</button>
     <button mat-raised-button class="btnPrincipal" [mat-dialog-close]="optionYes" cdkFocusInitial>{{data.msgBtnYes}}</button>
 </div>
