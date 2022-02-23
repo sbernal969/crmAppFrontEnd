@@ -1,4 +1,4 @@
-<form class="contenedor" [formGroup]="formCreate" (ngSubmit)="getErrorMessage()">
+<form class="contenedor" [formGroup]="formCreate" #htmlFormCreate="ngForm" >
   <section>
     <h2 class="titulo">Create Customer</h2>
   
@@ -439,7 +439,7 @@
     <button mat-raised-button (click)="btnCreateCustomer()" class="btnPrincipal">
       Create
     </button>
-    <button mat-raised-button class="btnPrincipal">Cancel</button>
+    <button mat-raised-button class="btnPrincipal" (click)="btnCancel()">Cancel</button>
     <button mat-raised-button class="btnPrincipal" (click)="btnHome()">
       Home
     </button>

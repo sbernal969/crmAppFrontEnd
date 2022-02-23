@@ -2,7 +2,6 @@ export function unFormatRut(rut) {
   var result = rut;
   result = result.toString().replace(/-/g, "");
   result = result.toString().replace(/\./g, "");
-  // console.log(result)
   return result;
 }
 
@@ -68,20 +67,6 @@ export function validateRut(rutIn) {
     return true;
   }
 
-}
-
-export function quitarDv(rut) {
-  var tempRut;
-  var tempDv;
-  var result = rut;
-  if (rut && rut.length > 1) {
-    tempRut = rut.substring(0, rut.length - 1);
-    tempDv = calcularDv(tempRut)
-    if (tempRut + tempDv === rut) {
-      result = tempRut;
-    }
-  }
-  return result;
 }
 
 export function calcularDv(rut) {
