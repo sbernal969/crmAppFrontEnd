@@ -2,9 +2,10 @@ import { CreateCustomer } from "./../../../models/interface/create-customer.inte
 import { Component, ViewChild } from "@angular/core";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import {
-  AbstractControl, 
+  AbstractControl,
   FormControl,
   FormGroup,
+  NgForm,
   Validators,
 } from "@angular/forms";
 import {
@@ -25,7 +26,7 @@ import {
 import { MatChipInputEvent, MatChipList } from "@angular/material/chips";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import * as rutUtils from "src/utils/RutUtils";
+import * as rutUtils from "src/utils/rutUtils";
 import { Router } from "@angular/router";
 import { CountryService } from "../../../services/country.service";
 import { Country } from "src/app/models/interface/country.interface";
@@ -166,13 +167,11 @@ export class CreateCustomerComponent {
   validation_messages = {
     rut: [
       { type: "required", message: "Required" },
-      { type: "maxlength", message: "At least 9 characters long" },
-      { type: "rutError", message: "Invalid Rut" },
+      { type: "minlength", message: "At least 9 characters long" },
+      { type: "pattern", message: "Only numbers and letter K" },
       { type: "NoEmpresa", message: "Rut only person" },
-      {
-        type: "pattern",
-        message: "Only numbers and letter K",
-      },
+      { type: "rutError", message: "Invalid Rut" } 
+     
     ],
     name: [
       { type: "required", message: "Required" },
@@ -191,10 +190,10 @@ export class CreateCustomerComponent {
     dateOfBirth: [{ type: "required", message: "Required" }],
     country: [{ type: "required", message: "Required" }],
     countries: [{ type: "required", message: "Required" }],
-   /*  nationality: [
-      { type: "required", message: "Required" },
-      { type: "validatorNacionalidad", message: "uno al menos" },
-    ], */
+    /*  nationality: [
+       { type: "required", message: "Required" },
+       { type: "validatorNacionalidad", message: "uno al menos" },
+     ], */
     nacionalidad: [{ type: "required", message: "Required" }],
     gender: [{ type: "required", message: "Required" }],
     mobileNumber: [
@@ -207,7 +206,7 @@ export class CreateCustomerComponent {
     //countryAddress: [{ type: "required", message: "Required" }],
     city: [{ type: "required", message: "Required" }],
     streetName: [{ type: "required", message: "Required" }],
-    number: [{ type: "required", message: "Required"},  { type: "pattern", message: "Only numbers" },],
+    number: [{ type: "required", message: "Required" }, { type: "pattern", message: "Only numbers" },],
     currency: [{ type: "required", message: "Required" }],
     monthyIncome: [
       { type: "required", message: "Required" },
@@ -229,13 +228,15 @@ export class CreateCustomerComponent {
   };
 
   //CREACION DEL FORM
+  
   formCreate = new FormGroup({
     countries: new FormControl("", [Validators.required]),
     rut: new FormControl("", [
       Validators.required,
       Validators.minLength(9),
       Validators.pattern("^[0-9]*[0-9Kk]*$"),
-      this.validatorRut,this.validatorNoEmpresa
+  this.validatorNoEmpresa,
+      this.validatorRut, 
     ]),
     name: new FormControl("", [
       Validators.required,
@@ -253,10 +254,10 @@ export class CreateCustomerComponent {
     ]),
     country: new FormControl("", [Validators.required]),
     dateOfBirth: new FormControl("", [Validators.required]),
-  /*   nationality: new FormControl("", [
-      Validators.required,
-      this.validateArrayNotEmpty,
-    ]), */
+    /*   nationality: new FormControl("", [
+        Validators.required,
+        this.validateArrayNotEmpty,
+      ]), */
     nacionalidad: new FormControl("", [Validators.required]),
     gender: new FormControl("", [Validators.required]),
     mobileNumber: new FormControl("", [
@@ -271,10 +272,10 @@ export class CreateCustomerComponent {
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
     ]),
-   // countryAddress: new FormControl("", [Validators.required]),
+    // countryAddress: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
     streetName: new FormControl("", [Validators.required]),
-    number: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")],),
+    number: new FormControl("", [Validators.required, Validators.pattern("^[0-9]*$")],),
     currency: new FormControl("", [Validators.required]),
     monthyIncome: new FormControl("", [
       Validators.required,
@@ -286,11 +287,10 @@ export class CreateCustomerComponent {
   });
 
 
-  getErrorMessage() {
-    console.log("messa")
+ /*  getErrorMessage() {
     if (this.formCreate.valid) this.resultado = "Todos los datos son válidos";
     else this.resultado = "Hay datos inválidos en el formulario";
-  }
+  } */
 
   validateArrayNotEmpty(c: FormControl) {
     if (c.value && c.value.length === 0) {
@@ -368,10 +368,14 @@ export class CreateCustomerComponent {
 
   validatorRut(fc: AbstractControl) {
     const value = fc.value as string;
-    if (!rutUtils.validateRut(value)) {
-      return { rutError: true };
-    }
+    if(value !== null){
+         if (!rutUtils.validateRut(value)) {
+          console.log("valida rut true")
+        return { rutError: true };
+      }        
+        }    
     return null;
+   
   }
 
   validatorNoEmpresa(fc: AbstractControl) {
@@ -471,12 +475,12 @@ export class CreateCustomerComponent {
     });
   }
 
+  btnCreateCustomer() {
+    if (this.formCreate.valid) {
+      this.createCustomer();
+      console.log("OK")
+    } else { console.log("NOK") }
 
-  btnCreateCustomer() {    
-    if (this.formCreate.valid) { this.createCustomer(); 
-      console.log("OK")} else { console.log("NOK")}
-
-  
   }
   createCustomer() {
     if (!this.validatorCheck()) {
@@ -536,41 +540,45 @@ export class CreateCustomerComponent {
           (this.customer.tipeOfClient = this.selectedCheck);
 
         this.serviceCreate(this.customer);
-       
+
       }
     });
   }
 
   serviceCreate(customer: CreateCustomer) {
-    var responsePost = this.customerService.postCustomer(this.customer); 
     try {
-       this.idCustomerCreated = responsePost.subscribe(
-          res => {
-            console.log("idCustomer: " + res);
-            this.router.navigateByUrl("/visualization", {state: {idCustomer: res.data.idCustomer}});
-          }
-        )
-    } catch (error) {
-      console.log("error create")
-      const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
-        width: "300px",
-        data: {
-          title: "Information",
-          message: "Try again",         
-          msgBtnYes: "Ok",
-          option: 0,
-        },
-      });
-  
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log("The dialog was closed");
-        console.log(result);
-      });
-    }
-        //this.customer = res.data;   
+      var responsePost = this.customerService.postCustomer(this.customer); 
+   
+      this.idCustomerCreated = responsePost.subscribe(
+         res => {         
+        
+          if (res.data.customerCreated == true) {
+            this.router.navigateByUrl("/visualization", { state: { idCustomer: res.data.idCustomer } });
+          } else { this.openDialogErrorServicio(res.data.message) }
 
-       
-      }
+        },err => this.openDialogErrorServicio("Try again, please.")
+      )
+    } catch (error) {
+      console.log("error" + responsePost)
+      this.openDialogErrorServicio("Try again, please.");
+    }    
+  }
+
+  openDialogErrorServicio(messageDialog): void {
+    const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
+      width: "200px",
+      data: {
+        message: messageDialog,
+        msgBtnYes: "Ok",
+        option: 0,
+        hiddenBtn: true
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
+      console.log(result);
+    });
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
@@ -581,6 +589,7 @@ export class CreateCustomerComponent {
         msgBtnNo: "No",
         msgBtnYes: "Yes",
         option: 0,
+        hiddenBtn: false
       },
     });
 
@@ -589,4 +598,12 @@ export class CreateCustomerComponent {
       console.log(result);
     });
   }
+
+  @ViewChild('htmlFormCreate') htmlFormCreate: NgForm;
+  btnCancel(){ 
+    this.selectedCheck = -1  
+       setTimeout(() => 
+      this.htmlFormCreate.resetForm(), 0)     
+    }
+  
 }

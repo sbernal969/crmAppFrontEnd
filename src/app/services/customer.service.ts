@@ -24,9 +24,10 @@ export class CustomerService {
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json" }),
     };   
-    const body = JSON.stringify(customer);
-    console.log(body)    
+    const body = JSON.stringify(customer);   
+    console.log(this.http.post<CreateCustomerResponse>(this.url + '/create',body, httpOptions))
     return this.http.post<CreateCustomerResponse>(this.url + '/create',body, httpOptions);
+    
     
   }
   
