@@ -1,0 +1,36 @@
+<div class="contenedor">
+    <section class="titulo">
+        <h2>Search for Customer(s)/Prospect(s)</h2>
+    </section>
+    <div class="table-responsive" class="tabla" style="height: 500px; overflow: auto;">
+        <table class="table table-bordered table-hover" style="height: 400px;">
+            <thead style="position: sticky; top: 0; z-index: 10;">
+                <tr>
+                    <th scope="col">National ID</th>
+                    <th scope="col">Name(s)</th>
+                    <th scope="col">First Familly Name</th>
+                    <th scope="col">Second Family Name</th>
+                    <th scope="col">Monthly Income</th>
+                    <th scope="col">Customer/Prospect</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers" (click)="viewCustomer(customer)">
+                    <td>{{customer.personalId}}</td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.familyFirstName}}</td>
+                    <td>{{customer.familySecondName}}</td>
+                    <td>{{customer.income}}</td>
+                    <td *ngIf="customer.tipeOfClient == 0">P</td>
+                    <td *ngIf="customer.tipeOfClient == 1">C</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="divBotones">
+        <button class="btnV" mat-raised-button color="primary">Search Page</button>
+        <button class="btnV" mat-raised-button color="primary">Home</button>
+        <button class="btnV" mat-raised-button color="primary">Back</button>
+    </div>
+</div>
