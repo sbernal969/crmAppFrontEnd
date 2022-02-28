@@ -6,6 +6,7 @@ import * as rutUtils from "src/utils/rutUtils";
 import { Currency } from 'src/app/models/interface/currency.interface';
 import { CurrenciesService } from 'src/app/services/currency.service';
 import { MatDialog } from '@angular/material/dialog';
+import { PopupConfirmacionComponent } from '../../utils/popup-confirmacion/popup-confirmacion.component';
 
 @Component({
   selector: 'app-search-customer-prospect',
@@ -21,7 +22,9 @@ export class SearchCustomerProspectComponent implements OnInit {
   currencies: Currency[] = [];
   rut = new FormControl();
   errMinMayor: boolean = true;
- 
+  currentUser: any = "";
+  rol?: number;
+
 
   ngOnInit(): void {
     this.loadCmbCurrency();
@@ -32,8 +35,9 @@ export class SearchCustomerProspectComponent implements OnInit {
     private router: Router,
     private currencyService: CurrenciesService,
     public dialog: MatDialog,
-
   ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.rol = this.currentUser.typeRol;
   }
 
 
@@ -128,33 +132,34 @@ export class SearchCustomerProspectComponent implements OnInit {
       if (incomeMax !== "" || idCurrency >= 1 || idCurrency == null) {
         console.log("Min no puede ser vacio  " + incomeMin)
         this.formSearch.controls["incomeMin"].setValidators(Validators.required)
-        this.formSearch.controls["incomeMin"].updateValueAndValidity();       
-        }
+        this.formSearch.controls["incomeMin"].updateValueAndValidity();
+      }
     }
 
     if (incomeMax == "" || incomeMax == null) {
       if (incomeMin !== "" || idCurrency >= 1 || idCurrency == null) {
         console.log("Max no puede ser vacio  " + incomeMax)
         this.formSearch.controls["incomeMax"].setValidators(Validators.required)
-        this.formSearch.controls["incomeMax"].updateValueAndValidity();    
+        this.formSearch.controls["incomeMax"].updateValueAndValidity();
       }
     }
 
-    if (idCurrency < 1) {      
+    if (idCurrency < 1) {
       if (incomeMin !== "" || incomeMax !== "") {
         console.log("Currency no puede ser vacio  " + idCurrency)
         this.formSearch.controls["idCurrency"].setValidators(Validators.required)
-        this.formSearch.controls["idCurrency"].updateValueAndValidity();        
+        this.formSearch.controls["idCurrency"].updateValueAndValidity();
       }
     }
 
-    if (parseInt(incomeMax) < parseInt(incomeMin)) {
-       this.errMinMayor = false;   
+    if (parseInt(incomeMax) <= parseInt(incomeMin)) {
+      this.errMinMayor = false;
     } else {
-      this.errMinMayor = true;     
+      this.errMinMayor = true;
     }
   }
- 
+
+  onChangeMin(){this.errMinMayor = true;}
 
   onChkCustomer(event: MatCheckboxChange) {
     if (event.source.checked) {
@@ -193,7 +198,7 @@ export class SearchCustomerProspectComponent implements OnInit {
 
 
   btnHome() {
-    this.router.navigate(["/homepage/"]);
+     this.openDialogHome();
   }
 
 
@@ -203,9 +208,11 @@ export class SearchCustomerProspectComponent implements OnInit {
         this.isChecked = false;
       }
       else {
-        if (this.formSearch.controls.incomeMin.value !== null || this.formSearch.controls.incomeMax.value !== null || this.formSearch.controls.idCurrency.value !== null
-        ) {
-          this.validatorMonthyIncome();
+        if (this.rol == 2) {
+          if (this.formSearch.controls.incomeMin.value !== null || this.formSearch.controls.incomeMax.value !== null || this.formSearch.controls.idCurrency.value !== null
+          ) {
+            this.validatorMonthyIncome();
+          }
         }
       }
     }
@@ -228,6 +235,25 @@ export class SearchCustomerProspectComponent implements OnInit {
     setTimeout(() =>
       this.htmlFormSearch.resetForm(), 0)
 
+  }
+
+  openDialogHome(): void {
+    const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
+      width: "300px",
+      data: {
+        title: "Search Customer and Prospect",
+        message: "¿Are you sure?",
+        msgBtnNo: "No",
+        msgBtnYes: "Yes",
+        option: 0,
+        hiddenBtn: false
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 1) { this.router.navigate(["/homepage/"]); } else { console.log("close")}
+
+    });
   }
 
 }
