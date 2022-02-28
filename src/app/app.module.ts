@@ -37,6 +37,7 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import {MatDividerModule} from '@angular/material/divider';
 import { LoginHelpComponent } from "./components/login/login-help/login-help.component";
 import { VisualizationComponent } from "./components/visualization/visualization.component";
+import { SearchCustomerProspectComponent } from './components/customers/search-customer-prospect/search-customer-prospect.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { VisualizationComponent } from "./components/visualization/visualization
     ForgotPasswordComponent,
     VisualizationComponent,
     PopupConfirmacionComponent,
+    SearchCustomerProspectComponent,
   ],
   imports: [
     BrowserModule,

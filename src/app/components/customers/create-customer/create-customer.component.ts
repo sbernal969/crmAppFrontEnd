@@ -235,7 +235,7 @@ export class CreateCustomerComponent {
       Validators.required,
       Validators.minLength(9),
       Validators.pattern("^[0-9]*[0-9Kk]*$"),
-  this.validatorNoEmpresa,
+      this.validatorNoEmpresa,
       this.validatorRut, 
     ]),
     name: new FormControl("", [
@@ -553,7 +553,7 @@ export class CreateCustomerComponent {
          res => {         
         
           if (res.data.customerCreated == true) {
-            this.router.navigateByUrl("/visualization", { state: { idCustomer: res.data.idCustomer } });
+            this.router.navigateByUrl("/visualization", { state: { idCustomer: res.data.idCustomer, origen: 1 } });
           } else { this.openDialogErrorServicio(res.data.message) }
 
         },err => this.openDialogErrorServicio("Try again, please.")
