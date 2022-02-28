@@ -5,14 +5,14 @@ import { BehaviorSubject, Observable, of } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
   providedIn: "root",
 })
 export class LoginService {
-  private jsonURL = "https://crmsiigroup.herokuapp.com/v1/login/user";
-  private jsonForgotURL = "https://crmsiigroup.herokuapp.com/v1/forgotpassword/post";
+  private url = environment.apiUrl;
   private isAuth = new BehaviorSubject<boolean>(true);
   isAuth$ = this.isAuth.asObservable();
 
@@ -31,7 +31,7 @@ export class LoginService {
 
     const body = JSON.stringify(usuario);
     console.log(params);
-    return this.http.post<LoginResponse>(this.jsonURL, body, httpOptions).pipe(
+    return this.http.post<LoginResponse>(this.url + 'login/user', body, httpOptions).pipe(
       tap((data: any) => console.log("Respuesta Servicio : ", data)),
       catchError(this.handleError("NOK Respuesta Servicio", []))
     );
@@ -83,7 +83,7 @@ export class LoginService {
     };
     const body = JSON.stringify(usuario);
     console.log(params);
-    return this.http.post<ForgotResponse>(this.jsonForgotURL, body, httpOptions).pipe(
+    return this.http.post<ForgotResponse>(this.url + 'forgotpassword/post', body, httpOptions).pipe(
       tap((data: any) => console.log("Respuesta Servicio : ", data)),
       catchError(this.handleError("NOK Respuesta Servicio", []))
     );
