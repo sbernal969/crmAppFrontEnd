@@ -51,56 +51,60 @@
       </mat-error>
     </mat-form-field>
   </p>
+  
+  <div *ngIf="this.rol == 2">
+    <mat-label class="lblFiltro">Monthy Income :</mat-label>
 
-  <mat-label class="lblFiltro">Monthy Income :</mat-label>
-
-  <mat-form-field appearance="fill" class="numMaxMin">
-    <mat-label>Min</mat-label>
-    <input matInput #input minlength="4" formControlName="incomeMin" />
-    <mat-hint class="error-message" *ngIf="!errMinMayor">Must be less</mat-hint>
-    <mat-error *ngFor="let validation of validation_messages.incomeMin">
-      <mat-error class="error-message" *ngIf=" 
-      formSearch.get('incomeMin')?.hasError(validation.type) &&
-          (formSearch.get('incomeMin')?.dirty ||
-          formSearch.get('incomeMin')?.touched)
-        ">{{ validation.message }}
+    <mat-form-field appearance="fill" class="numMaxMin">
+      <mat-label>Min</mat-label>
+      <input matInput #input minlength="4" formControlName="incomeMin" (change)="onChangeMin()" />
+      <mat-hint class="error-message" *ngIf="!errMinMayor">Must be less</mat-hint>
+      <mat-error *ngFor="let validation of validation_messages.incomeMin">
+        <mat-error class="error-message" *ngIf=" 
+        formSearch.get('incomeMin')?.hasError(validation.type) &&
+            (formSearch.get('incomeMin')?.dirty ||
+            formSearch.get('incomeMin')?.touched)
+          ">{{ validation.message }}
+        </mat-error>
       </mat-error>
-    </mat-error>
-  </mat-form-field>
- 
-
-
-  <mat-form-field appearance="fill" class="numMaxMin">
-    <mat-label>Max</mat-label>
-    <input matInput #input minlength="4" formControlName="incomeMax" />  
-    <mat-error *ngFor="let validation of validation_messages.incomeMax">
-      <mat-error class="error-message" *ngIf="
-              formSearch.get('incomeMax')?.hasError(validation.type) &&
-                  (formSearch.get('incomeMax')?.dirty ||
-                  formSearch.get('incomeMax')?.touched)
-                ">{{ validation.message }}
+    </mat-form-field>
+   
+  
+  
+    <mat-form-field appearance="fill" class="numMaxMin">
+      <mat-label>Max</mat-label>
+      <input matInput #input minlength="4" formControlName="incomeMax" />  
+      <mat-error *ngFor="let validation of validation_messages.incomeMax">
+        <mat-error class="error-message" *ngIf="
+                formSearch.get('incomeMax')?.hasError(validation.type) &&
+                    (formSearch.get('incomeMax')?.dirty ||
+                    formSearch.get('incomeMax')?.touched)
+                  ">{{ validation.message }}
+        </mat-error>
       </mat-error>
-    </mat-error>
-
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Currency</mat-label>
-    <mat-select formControlName="idCurrency">
-      <mat-option *ngFor="let currency of currencies" [value]="currency.id">
-        {{ currency.glosa }}
-      </mat-option>
-    </mat-select>
-    <mat-error *ngFor="let validation of validation_messages.idCurrency">
-      <mat-error class="error-message" *ngIf="
-                      formSearch.get('idCurrency')?.hasError(validation.type) &&
-                      (formSearch.get('idCurrency')?.dirty ||
-                      formSearch.get('idCurrency')?.touched)
-                    ">
-        {{ validation.message }}
+  
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="idCurrency">
+        <mat-option *ngFor="let currency of currencies" [value]="currency.id">
+          {{ currency.glosa }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of validation_messages.idCurrency">
+        <mat-error class="error-message" *ngIf="
+                        formSearch.get('idCurrency')?.hasError(validation.type) &&
+                        (formSearch.get('idCurrency')?.dirty ||
+                        formSearch.get('idCurrency')?.touched)
+                      ">
+          {{ validation.message }}
+        </mat-error>
       </mat-error>
-    </mat-error>
-  </mat-form-field>
+    </mat-form-field>
+  </div>
+
+  
 
   <mat-divider class="lineaTable"></mat-divider>
   <section class="sectionBtn">

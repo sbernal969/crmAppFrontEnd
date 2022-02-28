@@ -24,6 +24,9 @@ export class HomepageComponent implements OnInit {
 
   btnCreate(){this.router.navigate(["/create-customer/"]);}
 
+  btnSearch(){this.router.navigate(["/search-customer-prospect/"]);}
+
+
 }
 
 
