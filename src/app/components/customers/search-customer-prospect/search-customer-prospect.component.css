@@ -1,0 +1,154 @@
+.contenedor .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .contenedor {
+    margin: 1rem auto;
+    padding: 4rem;
+    background-color: white;
+    width: 55%;   
+    border-radius: 8px;  
+  }
+  
+  .conterTable {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+  
+  .mat-form-field {
+    width: 500 !important;
+  }
+  
+
+  .numMaxMin {
+    width: 130px !important;
+  }
+
+  
+  ::ng-deep .mat-form-field {
+    font-size: 12px;
+    width: 23%;  
+    margin-left: 2%;
+  }
+  
+  .btnPrincipal {
+    font-size: 13px;
+    background-color: #53a2da;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;   
+    width: 120px;
+    margin: 8px;
+    height: 40px;   
+  }
+  
+  .btnPrincipal:hover {
+    background-color: white;
+    color: rgb(74, 131, 238);
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .sectionCk{
+    margin-bottom: 15px;
+  }
+
+  .sectionBtn {
+  display: flex;
+  justify-content: center;
+  width: 100%;    
+  margin-top: 1px;
+  }
+  
+  .check {
+    margin-right: 3%;  
+    font-size: 14px;
+  }
+  ::ng-deep .mat-checkbox-frame {
+    border-color: rgb(74, 131, 238);
+  }
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #86bc25;
+  }
+  
+  ::ng-deep.buttons-class {
+    height: 60px !important;
+    width: 210px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ::ng-deep .mat-form-field-infix {
+    width: auto !important;
+}
+  
+  .txt {   
+    font-size: 14px;
+    margin-left: 2%;
+  }
+ 
+  .lineaTable {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .mat-standard-chip {
+    min-height: 21px !important;
+  }
+  
+  .titulo {
+    padding: 1rem;
+    width: auto;
+    margin: 16px;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    color: #53a2da;
+    margin-top: 0px;
+  }
+
+  .subTitulo {  
+    width: auto;   
+    justify-content: left;
+    text-align: left;
+    font-size: 16px;
+    color: #53a2da;
+
+  }
+    .lblFiltro {   
+    text-align: left;
+    font-size: 14px;
+    color: black;
+    width: 140px; 
+    display: inline-block;
+  }
+  
+  .divLbl {   
+    width: 60%;   
+   
+  }
+
+  mat-hint {
+    color: red !important;
+    font-size: 12px;
+ }
+
+  mat-error {  
+    font-size: 12px;
+      }
+  
