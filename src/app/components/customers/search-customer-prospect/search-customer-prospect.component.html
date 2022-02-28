@@ -1,0 +1,116 @@
+<form class="contenedor" [formGroup]="formSearch" #htmlFormSearch="ngForm">
+  <section class="sectionCk">
+    <h2 class="titulo">Search For Customer(s)/Prospect(s)</h2>
+    <mat-divider class="lineaTable"></mat-divider>
+    <mat-checkbox class="check" [checked]="chkCustomer" (change)="onChkCustomer($event)">Customer</mat-checkbox>
+    <mat-checkbox class="check" [checked]="chkProspect" (change)="onChkProspect($event)">Prospect</mat-checkbox>
+    <mat-error class="error-message" *ngIf="!isChecked">Is required</mat-error>
+  </section>
+
+  <p>
+    <mat-label class="lblFiltro">National ID Number :</mat-label>
+    <mat-form-field appearance="fill" class="txt">
+      <input matInput #input maxlength="9" formControlName="personalId" />
+      <mat-error *ngFor="let validation of validation_messages.personalId">
+        <mat-error class="error-message" *ngIf="
+            formSearch.get('personalId')?.hasError(validation.type) &&
+            (formSearch.get('personalId')?.dirty || formSearch.get('personalId')?.touched)
+          ">{{ validation.message }}
+        </mat-error>
+
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-label class="lblFiltro">Name(s) :</mat-label>
+    <mat-form-field appearance="fill" style="width: 300px !important" class="txt">
+      <input matInput #input minlength="2" formControlName="name" />
+      <mat-error *ngFor="let validation of validation_messages.name">
+        <mat-error class="error-message" *ngIf="
+          formSearch.get('name')?.hasError(validation.type) &&
+              (formSearch.get('name')?.dirty ||
+              formSearch.get('name')?.touched)
+            ">{{ validation.message }}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-label class="lblFiltro">Family First Name :</mat-label>
+    <mat-form-field appearance="fill" style="width: 300px !important">
+      <input matInput #input minlength="2" formControlName="firstName" />
+      <mat-error *ngFor="let validation of validation_messages.firstName">
+        <mat-error class="error-message" *ngIf="
+          formSearch.get('firstName')?.hasError(validation.type) &&
+              (formSearch.get('firstName')?.dirty ||
+              formSearch.get('firstName')?.touched)
+            ">{{ validation.message }}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <mat-label class="lblFiltro">Monthy Income :</mat-label>
+
+  <mat-form-field appearance="fill" class="numMaxMin">
+    <mat-label>Min</mat-label>
+    <input matInput #input minlength="4" formControlName="incomeMin" />
+    <mat-hint class="error-message" *ngIf="!errMinMayor">Must be less</mat-hint>
+    <mat-error *ngFor="let validation of validation_messages.incomeMin">
+      <mat-error class="error-message" *ngIf=" 
+      formSearch.get('incomeMin')?.hasError(validation.type) &&
+          (formSearch.get('incomeMin')?.dirty ||
+          formSearch.get('incomeMin')?.touched)
+        ">{{ validation.message }}
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+ 
+
+
+  <mat-form-field appearance="fill" class="numMaxMin">
+    <mat-label>Max</mat-label>
+    <input matInput #input minlength="4" formControlName="incomeMax" />  
+    <mat-error *ngFor="let validation of validation_messages.incomeMax">
+      <mat-error class="error-message" *ngIf="
+              formSearch.get('incomeMax')?.hasError(validation.type) &&
+                  (formSearch.get('incomeMax')?.dirty ||
+                  formSearch.get('incomeMax')?.touched)
+                ">{{ validation.message }}
+      </mat-error>
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Currency</mat-label>
+    <mat-select formControlName="idCurrency">
+      <mat-option *ngFor="let currency of currencies" [value]="currency.id">
+        {{ currency.glosa }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngFor="let validation of validation_messages.idCurrency">
+      <mat-error class="error-message" *ngIf="
+                      formSearch.get('idCurrency')?.hasError(validation.type) &&
+                      (formSearch.get('idCurrency')?.dirty ||
+                      formSearch.get('idCurrency')?.touched)
+                    ">
+        {{ validation.message }}
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-divider class="lineaTable"></mat-divider>
+  <section class="sectionBtn">
+    <button mat-raised-button class="btnPrincipal" (click)="btnHome()">
+      Home
+    </button>
+    <button mat-raised-button class="btnPrincipal" (click)="btnSearch()">
+      Search
+    </button>
+    <button mat-raised-button class="btnPrincipal" (click)="btnClearSearch()">Clear Search</button>
+
+  </section>
+</form>

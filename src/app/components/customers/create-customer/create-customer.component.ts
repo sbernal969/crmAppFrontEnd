@@ -235,7 +235,7 @@ export class CreateCustomerComponent {
       Validators.required,
       Validators.minLength(9),
       Validators.pattern("^[0-9]*[0-9Kk]*$"),
-  this.validatorNoEmpresa,
+      this.validatorNoEmpresa,
       this.validatorRut, 
     ]),
     name: new FormControl("", [
