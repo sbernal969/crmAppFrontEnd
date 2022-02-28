@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://crmsiigroup-back-qa.herokuapp.com/'
+  apiUrl: 'https://crmsiigroup-back-qa.herokuapp.com/v1/
 };
