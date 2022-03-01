@@ -35,7 +35,7 @@ export class CustomerService {
       headers: new HttpHeaders({ "Content-Type": "application/json" }),
     };  
     const body = JSON.stringify(searchCustomer); 
-    return this.http.post<SearchCustomersResponse>(this.url + '/searchcustomers', body, httpOptions);
+    return this.http.post<SearchCustomersResponse>(this.url + '/search', body, httpOptions);
   }
 
 }
