@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/interface/customer.interface';
@@ -216,7 +217,8 @@ export class CustomersListResultsComponent implements OnInit {
 
 
   constructor(private customerService: CustomerService,
-              private router: Router) { }
+              private router: Router,
+              private location: Location) { }
 
   ngOnInit(): void {
     /* this.filters = this.router.getCurrentNavigation().extras.state.filters; */
@@ -237,10 +239,22 @@ export class CustomersListResultsComponent implements OnInit {
   }   
 
   viewCustomer(customer: Customer){
-    this.router.navigateByUrl('/visualization', { state: {idCustomer: customer.idCustomer}})
+    this.router.navigateByUrl('/visualization', { state: {idCustomer: customer.idCustomer, origen: 2}})
     
     }
+  
+  btnHome() {
+    this.router.navigateByUrl(
+      '/homepage'
+    );
+    }
 
+  btnBack() {
+    this.location.back();
+  }
 
+  btnSearchPage(){
+    this.router.navigateByUrl('/search-page');
+  }
 }
 
