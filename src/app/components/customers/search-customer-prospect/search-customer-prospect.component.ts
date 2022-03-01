@@ -7,6 +7,7 @@ import { Currency } from 'src/app/models/interface/currency.interface';
 import { CurrenciesService } from 'src/app/services/currency.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupConfirmacionComponent } from '../../utils/popup-confirmacion/popup-confirmacion.component';
+import { SearchCustomers } from 'src/app/models/interface/search-customers.interface';
 
 @Component({
   selector: 'app-search-customer-prospect',
@@ -24,7 +25,19 @@ export class SearchCustomerProspectComponent implements OnInit {
   errMinMayor: boolean = true;
   currentUser: any = "";
   rol?: number;
+  validateMinMax: boolean = true; 
 
+  searchCustomers: SearchCustomers = {
+    personalId: "",
+    name: "",
+    familyFirstName: "",
+    incomeMax: 0,
+    incomeMin: 0,
+    idCurrency: 0,
+    isCustomer: false,
+    isProspect: false    
+  };
+  
 
   ngOnInit(): void {
     this.loadCmbCurrency();
@@ -123,43 +136,51 @@ export class SearchCustomerProspectComponent implements OnInit {
   }
 
 
-  validatorMonthyIncome() {
-    const incomeMin = this.formSearch.controls.incomeMin.value;
-    const incomeMax = this.formSearch.controls.incomeMax.value;
-    const idCurrency = this.formSearch.controls.idCurrency.value;
-
+  validatorMonthyIncome(incomeMin:string,incomeMax:string,idCurrency) {
     if (incomeMin == "" || incomeMin == null) {
       if (incomeMax !== "" || idCurrency >= 1 || idCurrency == null) {
-        console.log("Min no puede ser vacio  " + incomeMin)
+        //console.log("Min no puede ser vacio" + incomeMin)
         this.formSearch.controls["incomeMin"].setValidators(Validators.required)
         this.formSearch.controls["incomeMin"].updateValueAndValidity();
+        this.validateMinMax = false;
       }
-    }
+    } else { this.validateMinMax = true; }
 
     if (incomeMax == "" || incomeMax == null) {
       if (incomeMin !== "" || idCurrency >= 1 || idCurrency == null) {
-        console.log("Max no puede ser vacio  " + incomeMax)
+       // console.log("Max no puede ser vacio" + incomeMax)
         this.formSearch.controls["incomeMax"].setValidators(Validators.required)
         this.formSearch.controls["incomeMax"].updateValueAndValidity();
+        this.validateMinMax = false
       }
-    }
+    } else { this.validateMinMax = true; }
 
     if (idCurrency < 1) {
       if (incomeMin !== "" || incomeMax !== "") {
-        console.log("Currency no puede ser vacio  " + idCurrency)
+        //console.log("Currency no puede ser vacio false " + idCurrency)
         this.formSearch.controls["idCurrency"].setValidators(Validators.required)
         this.formSearch.controls["idCurrency"].updateValueAndValidity();
+        this.validateMinMax = false
+      }
+    } else { this.validateMinMax = true; }
+
+    if (this.validateMinMax == true && incomeMax !== "" && incomeMin !== ""){ 
+      if (parseInt(incomeMax) <= parseInt(incomeMin)) {
+        this.errMinMayor = false;
+        this.validateMinMax = false
+      } else {
+        this.errMinMayor = true;
+        this.validateMinMax = true
+        this.okValidateMinMax();
       }
     }
 
-    if (parseInt(incomeMax) <= parseInt(incomeMin)) {
-      this.errMinMayor = false;
-    } else {
-      this.errMinMayor = true;
-    }
+
   }
 
-  onChangeMin(){this.errMinMayor = true;}
+  
+  onChangeMin() { this.errMinMayor = true; }
+
 
   onChkCustomer(event: MatCheckboxChange) {
     if (event.source.checked) {
@@ -198,24 +219,48 @@ export class SearchCustomerProspectComponent implements OnInit {
 
 
   btnHome() {
-     this.openDialogHome();
+    this.openDialogHome();
+  }
+
+
+  okValidateMinMax() { 
+    if (this.validateMinMax == true && this.rol == 2) {      
+      this.makeObjSearch()
+    }
+
   }
 
 
   btnSearch() {
+    const incomeMin = this.formSearch.controls.incomeMin.value || "";
+    const incomeMax = this.formSearch.controls.incomeMax.value || "";
+    const currency = this.formSearch.controls.idCurrency.value || "";
+
     if (this.formSearch.valid) {
       if (this.chkCustomer == false && this.chkProspect == false) {
         this.isChecked = false;
       }
-      else {
-        if (this.rol == 2) {
-          if (this.formSearch.controls.incomeMin.value !== null || this.formSearch.controls.incomeMax.value !== null || this.formSearch.controls.idCurrency.value !== null
-          ) {
-            this.validatorMonthyIncome();
-          }
-        }
+      else {     
+        if (incomeMin !== "" || incomeMax !== "" || currency !== ""
+          ) {    
+            this.validatorMonthyIncome(incomeMin ,incomeMax ,currency);           
+          }else (this.makeObjSearch())
+        
       }
     }
+  }
+
+
+  makeObjSearch(){
+    this.searchCustomers.personalId   = this.formSearch.controls.personalId.value || null,
+    this.searchCustomers.name   = this.formSearch.controls.name.value || null,
+    this.searchCustomers.familyFirstName   = this.formSearch.controls.firstName.value || null,
+    this.searchCustomers.incomeMax   = parseInt(this.formSearch.controls.incomeMax.value) || null,
+    this.searchCustomers.incomeMin   = parseInt(this.formSearch.controls.incomeMin.value) || null,
+    this.searchCustomers.idCurrency = this.formSearch.controls.idCurrency.value || null,
+    this.searchCustomers.isCustomer = this.chkCustomer,
+    this.searchCustomers.isProspect = this.chkProspect   
+    this.router.navigateByUrl('/customers-list-results', { state: {filters: this.searchCustomers}})
   }
 
 
@@ -224,18 +269,21 @@ export class SearchCustomerProspectComponent implements OnInit {
     this.chkProspect = false;
     this.isChecked = true;
     this.errMinMayor = true;
+    this.validateMinMax = true;   
     this.formSearch.controls["incomeMin"].setValidators(null);
     this.formSearch.controls["incomeMin"].setValidators([Validators.minLength(4), Validators.pattern(/^[0-9]\d*$/)])
     this.formSearch.controls["incomeMin"].updateValueAndValidity();
     this.formSearch.controls["incomeMax"].setValidators(null);
-    this.formSearch.controls["incomeMin"].setValidators([Validators.minLength(4), Validators.pattern(/^[0-9]\d*$/)])
+    this.formSearch.controls["incomeMax"].setValidators([Validators.minLength(4), Validators.pattern(/^[0-9]\d*$/)])
     this.formSearch.controls["incomeMax"].updateValueAndValidity();
     this.formSearch.controls["idCurrency"].setValidators(null);
     this.formSearch.controls["idCurrency"].updateValueAndValidity();
     setTimeout(() =>
       this.htmlFormSearch.resetForm(), 0)
+     
 
   }
+
 
   openDialogHome(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
@@ -251,7 +299,7 @@ export class SearchCustomerProspectComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result == 1) { this.router.navigate(["/homepage/"]); } else { console.log("close")}
+      if (result == 1) { this.router.navigate(["/homepage/"]); } else { console.log("close") }
 
     });
   }
