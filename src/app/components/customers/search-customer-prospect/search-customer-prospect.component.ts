@@ -7,6 +7,7 @@ import { Currency } from 'src/app/models/interface/currency.interface';
 import { CurrenciesService } from 'src/app/services/currency.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupConfirmacionComponent } from '../../utils/popup-confirmacion/popup-confirmacion.component';
+import { SearchCustomers } from 'src/app/models/interface/search-customers.interface';
 
 @Component({
   selector: 'app-search-customer-prospect',
@@ -24,8 +25,19 @@ export class SearchCustomerProspectComponent implements OnInit {
   errMinMayor: boolean = true;
   currentUser: any = "";
   rol?: number;
-  validateMinMax: boolean = true;
+  validateMinMax: boolean = true; 
 
+  searchCustomers: SearchCustomers = {
+    personalId: "",
+    name: "",
+    familyFirstName: "",
+    incomeMax: 0,
+    incomeMin: 0,
+    idCurrency: 0,
+    isCustomer: false,
+    isProspect: false    
+  };
+  
 
   ngOnInit(): void {
     this.loadCmbCurrency();
@@ -166,7 +178,9 @@ export class SearchCustomerProspectComponent implements OnInit {
 
   }
 
+  
   onChangeMin() { this.errMinMayor = true; }
+
 
   onChkCustomer(event: MatCheckboxChange) {
     if (event.source.checked) {
@@ -208,12 +222,14 @@ export class SearchCustomerProspectComponent implements OnInit {
     this.openDialogHome();
   }
 
+
   okValidateMinMax() { 
     if (this.validateMinMax == true && this.rol == 2) {      
       this.makeObjSearch()
     }
 
   }
+
 
   btnSearch() {
     const incomeMin = this.formSearch.controls.incomeMin.value || "";
@@ -234,15 +250,17 @@ export class SearchCustomerProspectComponent implements OnInit {
     }
   }
 
+
   makeObjSearch(){
-    console.log(this.chkCustomer + "" +  this.chkProspect)
-    console.log (  
-    this.formSearch.controls.personalId.value + 
-    this.formSearch.controls.name.value +
-    this.formSearch.controls.firstName.value +   
-    this.formSearch.controls.incomeMin.value + 
-    this.formSearch.controls.incomeMax.value +
-    this.formSearch.controls.idCurrency.value )
+    this.searchCustomers.personalId   = this.formSearch.controls.personalId.value || null,
+    this.searchCustomers.name   = this.formSearch.controls.name.value || null,
+    this.searchCustomers.familyFirstName   = this.formSearch.controls.firstName.value || null,
+    this.searchCustomers.incomeMax   = parseInt(this.formSearch.controls.incomeMax.value) || null,
+    this.searchCustomers.incomeMin   = parseInt(this.formSearch.controls.incomeMin.value) || null,
+    this.searchCustomers.idCurrency = this.formSearch.controls.idCurrency.value || null,
+    this.searchCustomers.isCustomer = this.chkCustomer,
+    this.searchCustomers.isProspect = this.chkProspect   
+    this.router.navigateByUrl('/customers-list-results', { state: {filters: this.searchCustomers}})
   }
 
 
@@ -260,12 +278,12 @@ export class SearchCustomerProspectComponent implements OnInit {
     this.formSearch.controls["incomeMax"].updateValueAndValidity();
     this.formSearch.controls["idCurrency"].setValidators(null);
     this.formSearch.controls["idCurrency"].updateValueAndValidity();
-
     setTimeout(() =>
       this.htmlFormSearch.resetForm(), 0)
      
 
   }
+
 
   openDialogHome(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
