@@ -1,0 +1,60 @@
+.contenedor {
+    margin: 1rem auto;
+    padding: 4rem;
+    background-color: white;
+    width: 90%;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.titulo {
+    padding: 1rem;
+    width: auto;
+    margin: 16px;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+    color: #53a2da;
+    margin-top: 0px;
+}
+
+thead,
+th {
+    background-color: #d0ebfd;
+}
+
+th,
+td,
+tr {
+    border: rgb(230, 224, 224) 1px solid;
+    width: auto;
+}
+
+.divBotones {
+    margin: auto;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.btnV {
+    font-size: 14px;
+    background-color: #53a2da;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 3px;
+    width: 100px;
+    margin: 10px;
+    height: 40px;
+}
+
+.btnV:hover {
+    background-color: white;
+    color: rgb(74, 131, 238);
+    cursor: pointer;
+}
