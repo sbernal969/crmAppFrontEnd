@@ -7,6 +7,9 @@ import { HomepageComponent } from "./components/homepage/homepage.component";
 import { PreventLoggedInAccess } from "./components/login/prevent-logged-in-access";
 import { VisualizationComponent } from "./components/visualization/visualization.component";
 import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
+import { CustomersListResultsComponent } from "./components/customers/customers-list-results/customers-list-results.component";
+
+
 
 const appRoutes: Routes = [
   { path: "login", component: LoginPageComponent },
@@ -32,6 +35,11 @@ const appRoutes: Routes = [
   {
     path: "visualization",
     component: VisualizationComponent,
+    canActivate: [PreventLoggedInAccess],
+  },
+  {
+    path: "customers-list-results",
+    component: CustomersListResultsComponent,
     canActivate: [PreventLoggedInAccess],
   },
   {

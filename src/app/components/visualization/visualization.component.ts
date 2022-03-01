@@ -32,6 +32,7 @@ export class VisualizationComponent implements OnInit {
    } */
 
    customer: Customer = {
+     idCustomer: 7,
      personalId: '',
      name: '',
      familyFirstName: '',

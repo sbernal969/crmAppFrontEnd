@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { CustomerResponse } from '../models/interface/customer-response.interface';
 import { CreateCustomerResponse } from '../models/interface/create-customer-response.interface';
 import { Observable } from 'rxjs';
+import { SearchCustomers} from '../models/interface/search-customers.interface';
+import { SearchCustomersResponse } from '../models/interface/search-customers-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +27,15 @@ export class CustomerService {
       headers: new HttpHeaders({ "Content-Type": "application/json" }),
     };   
     const body = JSON.stringify(customer);   
-    console.log(this.http.post<CreateCustomerResponse>(this.url + '/create',body, httpOptions))
     return this.http.post<CreateCustomerResponse>(this.url + '/create',body, httpOptions);
-    
-    
   }
-  
 
+  public searchCustomer(searchCustomer: SearchCustomers): Observable <SearchCustomersResponse> {
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" }),
+    };  
+    const body = JSON.stringify(searchCustomer); 
+    return this.http.post<SearchCustomersResponse>(this.url + '/searchcustomers', body, httpOptions);
+  }
 
 }
