@@ -54,7 +54,7 @@
     </div>
     <hr>
 
-    <div class="divLabels" *ngIf="this.rol == 2">
+    <div class="divLabels" *ngIf="this.rol == 2 || this.origen == 1">
         <p class="subTitulo">Monthly Income</p>
         <label class="labelPrincipal">Currency:</label>
         <label class="labelSecundarioCurrency">{{customer.currencyName}}</label>

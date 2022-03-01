@@ -15,25 +15,29 @@ import { PopupConfirmacionComponent } from '../../utils/popup-confirmacion/popup
 
 export class CustomersListResultsComponent implements OnInit {
 
-  filters: SearchCustomers = {
-    personalId: null,
-    name: null,
-    familyFirstName: null,
-    incomeMax: null,
-    incomeMin: null,
-    idCurrency: null,
-    isCustomer: true,
-    isProspect: false
-  }
+  filters: SearchCustomers;
   customers: Customer[] = [];
+  currentUser: any;
+  rol: number;
 
   constructor(private customerService: CustomerService,
               private router: Router,
               private location: Location,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) { 
+                this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+                this.rol = this.currentUser.typeRol;
+
+                if(this.router.getCurrentNavigation().extras.state){
+                    this.filters = this.router.getCurrentNavigation().extras.state.filters;
+                    sessionStorage.setItem('filters', JSON.stringify(this.filters));
+                }
+                else{
+                  console.log("back"+ sessionStorage.getItem('filters'));
+                  this.filters = JSON.parse(sessionStorage.getItem('filters'));
+                }
+              }
 
   ngOnInit(): void {
-      /* this.filters = this.router.getCurrentNavigation().extras.state.filters; */ 
        this.customerService.searchCustomer(this.filters)
       .subscribe(
         res => {
