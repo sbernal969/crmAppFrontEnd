@@ -1,3 +1,4 @@
+import { SearchCustomerProspectComponent } from './components/customers/search-customer-prospect/search-customer-prospect.component';
 import { ForgotPasswordComponent } from "./components/login/forgot-password/forgot-password.component";
 import { CreateCustomerComponent } from "./components/customers/create-customer/create-customer.component";
 import { LoginPageComponent } from "./components/login/login-page/login-page.component";
@@ -39,6 +40,13 @@ const appRoutes: Routes = [
   {
     path: "customers-list-results",
     component: CustomersListResultsComponent,
+    canActivate: [PreventLoggedInAccess],
+  },
+  {
+    path: "search-customer-prospect",
+    component: SearchCustomerProspectComponent,
+    canActivate: [PreventLoggedInAccess],
+   
   },
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "**", redirectTo: "/login" },

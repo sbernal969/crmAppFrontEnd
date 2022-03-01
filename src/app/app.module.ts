@@ -38,8 +38,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { LoginHelpComponent } from "./components/login/login-help/login-help.component";
 import { VisualizationComponent } from "./components/visualization/visualization.component";
 import { CustomersListResultsComponent } from "./components/customers/customers-list-results/customers-list-results.component";
-
-
+import { SearchCustomerProspectComponent } from './components/customers/search-customer-prospect/search-customer-prospect.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +55,7 @@ import { CustomersListResultsComponent } from "./components/customers/customers-
     PopupConfirmacionComponent,
     CustomersListResultsComponent,
     
+    SearchCustomerProspectComponent,
   ],
   imports: [
     BrowserModule,
