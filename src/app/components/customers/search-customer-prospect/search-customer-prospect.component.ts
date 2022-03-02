@@ -287,9 +287,9 @@ export class SearchCustomerProspectComponent implements OnInit {
 
   openDialogHome(): void {
     const dialogRef = this.dialog.open(PopupConfirmacionComponent, {
-      width: "400px",
+      width: "450px",
       data: {
-        title: "Search Customer and Prospect",
+        title: "Leaving the Search for Customer/Prospect",
         message: "¿Are you sure?",
         msgBtnNo: "No",
         msgBtnYes: "Yes",
