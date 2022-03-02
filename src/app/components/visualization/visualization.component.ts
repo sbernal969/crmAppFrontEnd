@@ -119,7 +119,7 @@ export class VisualizationComponent implements OnInit {
   }
 
   btnSearchPage(){
-    this.router.navigateByUrl('/search-page');
+    this.router.navigateByUrl('/search-customer-prospect');
   }
 
 }

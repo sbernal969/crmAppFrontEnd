@@ -1,8 +1,13 @@
-<h1 mat-dialog-title>{{data.title}}</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title style="text-align: center; justify-content: center;">{{data.title}}
+    <hr>
+</h1>
+
+<div mat-dialog-content style="text-align: center; justify-content: center;">
     <p>{{data.message}}</p>
+
+
 </div>
-<div mat-dialog-actions>
-    <button mat-raised-button class="btnPrincipal" [mat-dialog-close]="optionNo"  [hidden]="data.hiddenBtn">{{data.msgBtnNo}}</button>
+<div mat-dialog-actions style="text-align: center; justify-content: center;">
+    <button mat-raised-button class="btnPrincipal" [mat-dialog-close]="optionNo" [hidden]="data.hiddenBtn">{{data.msgBtnNo}}</button>
     <button mat-raised-button class="btnPrincipal" [mat-dialog-close]="optionYes" cdkFocusInitial>{{data.msgBtnYes}}</button>
 </div>
