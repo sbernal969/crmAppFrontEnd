@@ -182,10 +182,10 @@ export class SearchCustomerProspectComponent implements OnInit {
   onChangeMin() { this.errMinMayor = true; }
 
 
-  onChkCustomer(event: MatCheckboxChange) {
-    if (event.source.checked) {
+  onChkCustomer(event: MatCheckboxChange) { 
+    if (event.source.checked) {    
       this.chkCustomer = true;
-      this.isChecked = true;
+      this.isChecked = true;     
     } else {
       this.chkCustomer = false;
       if (this.chkProspect == false) {
@@ -195,10 +195,10 @@ export class SearchCustomerProspectComponent implements OnInit {
   }
 
 
-  onChkProspect(event: MatCheckboxChange) {
+  onChkProspect(event: MatCheckboxChange) {  
     if (event.source.checked) {
       this.chkProspect = true;
-      this.isChecked = true;
+      this.isChecked = true;     
     } else {
       this.chkProspect = false;
       if (this.chkCustomer == false) {
@@ -219,7 +219,15 @@ export class SearchCustomerProspectComponent implements OnInit {
 
 
   btnHome() {
-    this.openDialogHome();
+    const incomeMin = this.formSearch.controls.incomeMin.value || "";
+    const incomeMax = this.formSearch.controls.incomeMax.value || "";
+    const idCurrency = this.formSearch.controls.idCurrency.value || "";
+    const name = this.formSearch.controls.name.value || "";
+    const firstName = this.formSearch.controls.firstName.value || "";
+    
+    if(this.chkProspect == true || this.chkCustomer == true ||incomeMin !== "" || incomeMax !== "" || idCurrency !== ""  || name !== "" || firstName !== ""){
+       this.openDialogHome();}else{this.router.navigate(["/homepage/"]);}
+ 
   }
 
 
@@ -254,12 +262,13 @@ export class SearchCustomerProspectComponent implements OnInit {
   makeObjSearch(){
     this.searchCustomers.personalId   = this.formSearch.controls.personalId.value || null,
     this.searchCustomers.name   = this.formSearch.controls.name.value || null,
-    this.searchCustomers.familyFirstName   = this.formSearch.controls.firstName.value || null,
+    this.searchCustomers.familyFirstName   = this.formSearch.controls.firstName.value|| null,
     this.searchCustomers.incomeMax   = parseInt(this.formSearch.controls.incomeMax.value) || null,
     this.searchCustomers.incomeMin   = parseInt(this.formSearch.controls.incomeMin.value) || null,
     this.searchCustomers.idCurrency = this.formSearch.controls.idCurrency.value || null,
     this.searchCustomers.isCustomer = this.chkCustomer,
-    this.searchCustomers.isProspect = this.chkProspect   
+    this.searchCustomers.isProspect= this.chkProspect,
+    console.table(this.searchCustomers)
     this.router.navigateByUrl('/customers-list-results', { state: {filters: this.searchCustomers}})
   }
 
