@@ -95,11 +95,11 @@ export class SearchCustomerProspectComponent implements OnInit {
     ]),
     name: new FormControl("", [
       Validators.minLength(2),
-      Validators.pattern("^[a-zA-Z ]*$"),
+      Validators.pattern("^[a-zA-ZñÑ]*$"),
     ]),
     firstName: new FormControl("", [
       Validators.minLength(2),
-      Validators.pattern("^[a-zA-Z ]*$"),
+      Validators.pattern("^[a-zA-ZñÑ]*$"),
     ]),
     incomeMin: new FormControl("", [
       Validators.minLength(4),
@@ -224,10 +224,10 @@ export class SearchCustomerProspectComponent implements OnInit {
     const idCurrency = this.formSearch.controls.idCurrency.value || "";
     const name = this.formSearch.controls.name.value || "";
     const firstName = this.formSearch.controls.firstName.value || "";
+    const personalId = this.formSearch.controls.personalId.value || "";
     
-    if(this.chkProspect == true || this.chkCustomer == true ||incomeMin !== "" || incomeMax !== "" || idCurrency !== ""  || name !== "" || firstName !== ""){
-       this.openDialogHome();}else{this.router.navigate(["/homepage/"]);}
- 
+    if(this.chkProspect == true || this.chkCustomer == true || incomeMin !== "" || incomeMax !== "" || idCurrency !== ""  || name !== "" || firstName !== ""  || personalId !== ""){
+       this.openDialogHome();}else{this.router.navigate(["/homepage/"]);} 
   }
 
 
@@ -268,7 +268,6 @@ export class SearchCustomerProspectComponent implements OnInit {
     this.searchCustomers.idCurrency = this.formSearch.controls.idCurrency.value || null,
     this.searchCustomers.isCustomer = this.chkCustomer,
     this.searchCustomers.isProspect= this.chkProspect,
-    console.table(this.searchCustomers)
     this.router.navigateByUrl('/customers-list-results', { state: {filters: this.searchCustomers}})
   }
 

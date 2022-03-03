@@ -2,7 +2,6 @@ import { ForgotResponse } from "./../models/interface/forgot.interface";
 import { LoginResponse } from "../models/interface/login.interface";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
@@ -30,21 +29,7 @@ export class LoginService {
     };
 
     const body = JSON.stringify(usuario);
-    console.log(params);
-    return this.http.post<LoginResponse>(this.url + 'login/user', body, httpOptions).pipe(
-      tap((data: any) => console.log("Respuesta Servicio : ", data)),
-      catchError(this.handleError("NOK Respuesta Servicio", []))
-    );
-  }
-
-  private handleError<T>(operation = "operation", result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+    return this.http.post<LoginResponse>(this.url + 'login/user', body, httpOptions)
   }
 
   isAuthenticated(): boolean {
@@ -81,11 +66,7 @@ export class LoginService {
     const usuario = {
       user: user,
     };
-    const body = JSON.stringify(usuario);
-    console.log(params);
-    return this.http.post<ForgotResponse>(this.url + 'forgotpassword/post', body, httpOptions).pipe(
-      tap((data: any) => console.log("Respuesta Servicio : ", data)),
-      catchError(this.handleError("NOK Respuesta Servicio", []))
-    );
+    const body = JSON.stringify(usuario);   
+    return this.http.post<ForgotResponse>(this.url + 'forgotpassword/post', body, httpOptions)
   }
 }
