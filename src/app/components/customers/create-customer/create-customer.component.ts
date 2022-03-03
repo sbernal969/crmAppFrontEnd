@@ -241,16 +241,16 @@ export class CreateCustomerComponent {
     name: new FormControl("", [
       Validators.required,
       Validators.minLength(2),
-      Validators.pattern("^[a-zA-Z ]*$"),
+      Validators.pattern("^[a-zA-ZñÑ]*$"),
     ]),
     firstName: new FormControl("", [
       Validators.required,
       Validators.minLength(2),
-      Validators.pattern("^[a-zA-Z ]*$"),
+      Validators.pattern("^[a-zA-ZñÑ]*$"),
     ]),
     secondName: new FormControl("", [
       Validators.minLength(2),
-      Validators.pattern("^[a-zA-Z ]*$"),
+      Validators.pattern("^[a-zA-ZñÑ]*$"),
     ]),
     country: new FormControl("", [Validators.required]),
     dateOfBirth: new FormControl("", [Validators.required]),
@@ -369,8 +369,7 @@ export class CreateCustomerComponent {
   validatorRut(fc: AbstractControl) {
     const value = fc.value as string;
     if(value !== null){
-         if (!rutUtils.validateRut(value)) {
-          console.log("valida rut true")
+         if (!rutUtils.validateRut(value)) {         
         return { rutError: true };
       }        
         }    
