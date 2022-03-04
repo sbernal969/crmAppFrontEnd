@@ -10,6 +10,7 @@ export class PopupConfirmacionComponent implements OnInit {
 
   optionNo: number = 0;
   optionYes: number = 1;
+  hiddenBtn: false;
 
   constructor(public dialogRef: MatDialogRef<PopupConfirmacionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }

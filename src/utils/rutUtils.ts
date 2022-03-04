@@ -2,7 +2,6 @@ export function unFormatRut(rut) {
   var result = rut;
   result = result.toString().replace(/-/g, "");
   result = result.toString().replace(/\./g, "");
-  // console.log(result)
   return result;
 }
 
@@ -32,7 +31,7 @@ export function formatRut(rut) {
 }
 
 export function validateNoEmpresa(rutIn) {
-  if (rutIn < 600000000) {
+  if (quitarDv(rutIn) < 60000000) {
     return true;
   } else { return false }
 }
@@ -70,20 +69,6 @@ export function validateRut(rutIn) {
 
 }
 
-export function quitarDv(rut) {
-  var tempRut;
-  var tempDv;
-  var result = rut;
-  if (rut && rut.length > 1) {
-    tempRut = rut.substring(0, rut.length - 1);
-    tempDv = calcularDv(tempRut)
-    if (tempRut + tempDv === rut) {
-      result = tempRut;
-    }
-  }
-  return result;
-}
-
 export function calcularDv(rut) {
   var dvr = "0";
   var suma = 0;
@@ -101,4 +86,18 @@ export function calcularDv(rut) {
     dvr = dvi + "";
   }
   return dvr;
+}
+
+export function quitarDv(rut) {
+  var tempRut;
+  var tempDv;
+  var result = rut;
+  if (rut && rut.length > 1) {
+    tempRut = rut.substring(0, rut.length - 1);
+    tempDv = calcularDv(tempRut)
+    if (tempRut + tempDv === rut) {
+      result = tempRut;
+    }
+  }
+  return result;
 }

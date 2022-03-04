@@ -54,7 +54,7 @@
     </div>
     <hr>
 
-    <div class="divLabels">
+    <div class="divLabels" *ngIf="this.rol == 2 || this.origen == 1">
         <p class="subTitulo">Monthly Income</p>
         <label class="labelPrincipal">Currency:</label>
         <label class="labelSecundarioCurrency">{{customer.currencyName}}</label>
@@ -62,9 +62,14 @@
         <label class="labelSecundario">{{customer.income}}</label>
     </div>
 
-    <div class="botones">
+    <div class="botones" *ngIf="this.origen == 1">
         <button class="btnV" mat-raised-button color="primary" (click)="btnHome()">Home</button>
         <button class="btnV" mat-raised-button color="primary" (click)="btnCreate()">Create</button>
+    </div>
+    <div class="botones" *ngIf="this.origen == 2">
+        <button class="btnV" mat-raised-button color="primary" (click)="btnSearchPage()">Search Page</button>
+        <button class="btnV" mat-raised-button color="primary" (click)="btnHome()">Home</button>
+        <button class="btnV" mat-raised-button color="primary" (click)="btnBack()">Back</button>
     </div>
 
 </div>

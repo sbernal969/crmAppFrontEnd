@@ -12,9 +12,7 @@ export class HomepageComponent implements OnInit {
   rol?: number;
 
   constructor(private route: ActivatedRoute,  private router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    console.log(this.currentUser);
-    
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');  
     this.rol = this.currentUser.typeRol;
   }
 
@@ -23,6 +21,9 @@ export class HomepageComponent implements OnInit {
   }
 
   btnCreate(){this.router.navigate(["/create-customer/"]);}
+
+  btnSearch(){this.router.navigate(["/search-customer-prospect/"]);}
+
 
 }
 

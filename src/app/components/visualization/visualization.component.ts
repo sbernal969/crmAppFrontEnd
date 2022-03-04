@@ -4,6 +4,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { Subscription } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-visualization',
@@ -31,6 +32,7 @@ export class VisualizationComponent implements OnInit {
    } */
 
    customer: Customer = {
+     idCustomer: 7,
      personalId: '',
      name: '',
      familyFirstName: '',
@@ -64,20 +66,25 @@ export class VisualizationComponent implements OnInit {
    };
    isCustomer: number = 0;
    idCustomer: number = 0;
+   currentUser: any = "";
+   rol?: number;
+   origen: number = 1;
 
   constructor(
     private customerService: CustomerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-
+    private location: Location
     ) 
-    
     {
       try {
         this.idCustomer = this.router.getCurrentNavigation().extras.state.idCustomer;
       } catch (error) {
         this.btnHome();
       }
+      this.origen = this.router.getCurrentNavigation().extras.state.origen; //Origen --> 1: Create; 2: Search 
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      this.rol = this.currentUser.typeRol;
       
     }
 
@@ -102,10 +109,17 @@ export class VisualizationComponent implements OnInit {
   }
 
   btnCreate() {
-  this.router.navigateByUrl(
-    '/create-customer'
-  );
+    this.router.navigateByUrl(
+      '/create-customer'
+    );
   }
 
+  btnBack() {
+    this.location.back();
+  }
+
+  btnSearchPage(){
+    this.router.navigateByUrl('/search-customer-prospect');
+  }
 
 }

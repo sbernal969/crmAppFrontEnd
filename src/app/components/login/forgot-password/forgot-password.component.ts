@@ -93,7 +93,6 @@ export class ForgotPasswordComponent implements OnInit {
       this.loginForm.user.val = "";
     } else {
       this.toastr.success(this.forgotResponse.data.message);
-      this.loginService.login(JSON.stringify(this.forgotResponse.data));
     }
   }
 }
